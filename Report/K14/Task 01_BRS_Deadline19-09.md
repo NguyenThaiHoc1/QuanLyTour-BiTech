@@ -12,7 +12,7 @@
 
 ## PHÂN CHIA CÔNG VIỆC:
 * [x] Quy trình đăng ký tour (1412367)
-* [ ] Quy trình báo cáo (MSSV)
+* [x] Quy trình báo cáo (1412193)
 * [ ] Quy trình thống kê (MSSV)
 * [ ] Đặc tả yêu cầu (Phần 4 template) (MSSV)
 * [x] Reviewer (1412193)
