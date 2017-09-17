@@ -11,7 +11,7 @@
 - Quá deadline này nếu có nộp thì leader vẫn nhận, tuy nhiên nếu ảnh hưởng đến tiến độ công việc thì sẽ cân nhắc ghi vào report tổng.
 
 ## PHÂN CHIA CÔNG VIỆC:
-* [ ] Quy trình đăng ký tour (MSSV)
+* [x] Quy trình đăng ký tour (1412367)
 * [ ] Quy trình báo cáo (MSSV)
 * [ ] Quy trình thống kê (MSSV)
 * [ ] Đặc tả yêu cầu (Phần 4 template) (MSSV)
