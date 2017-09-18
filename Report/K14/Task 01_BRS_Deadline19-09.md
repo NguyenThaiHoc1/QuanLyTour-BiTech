@@ -14,5 +14,5 @@
 * [x] Quy trình đăng ký tour (1412367)
 * [x] Quy trình báo cáo (1412193)
 * [ ] Quy trình thống kê (MSSV)
-* [ ] Đặc tả yêu cầu (Phần 4 template) (MSSV)
+* [x] Đặc tả yêu cầu (Phần 4 template) (1412240)
 * [x] Reviewer (1412193)
