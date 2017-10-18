@@ -1,0 +1,25 @@
+Kiến trúc Hive
+Hive được chia làm 3 thành phần cụ thể
+- Hive UI
+- Hive driver
+- Hive metastore
+
+a. Hive UI 
+Cung cấp giao diện cho người dùng tương tác với hệ thống HIVE
+Các phương thức mà người dùng có thể thao tác với HIVE
+- Web UI (giao tiếp trực tiếp trên web có hỗ trợ VD: hontornwork)
+- ConsoleUI (giao tiếp qua các câu lệnh command)
+- Thift Server (là các DBMS có hỗ trợ biên dịch ra các mã lệnh mà khi gửi xuống HIVE để xử lý HIVE có thể hiểu được VD: oracle)
+
+b. Hive Driver
+nơi nhận các câu truy vấn đến và chuyển những câu truy vấn này thành các MapReduce Jobs để tiến hành xử lý yêu cầu của người sử dụng
+- Bao gồm:
+	Driver: nhận các câu truy vấn đến, nơi đây thực hiện việc quản lý sessions và cũng như cung cấp các API để thực thi lấy dữ liệu trên JDBC/ODBC interfaces
+	Compiler: phân tích ngữ nghĩa câu truy vấn thực hiện lấy metadata cần thiết về table và partion từ metastore để sinh ra các execution plan
+	Execute engine: thành phần thực thi các execution plan đã được tạo bởi Compiler (submit các jobs tới Map)
+
+c. Hive metastore 
+	là thành phần lưu trữ metadata của hive: table, partion, buckets
+	Bao gồm cả các thông tin về các column trong mỗi table, các serialzers và desrializers cần thiết để thực hiện viêc đọc và ghi dữ liệu
+	Mestore sử dụng một CSDL quan hệ để lưu trữ dữ liệu của chính mình
+	Là CSDL quan hệ chứa thông tin khác nhau liên quan đến các Hive Schema (column types, owners, key-value data, statistc, ...)  
