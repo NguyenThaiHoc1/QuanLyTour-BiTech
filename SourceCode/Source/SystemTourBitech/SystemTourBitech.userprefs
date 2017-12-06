@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{76283555-86DF-44CC-9934-E7AB9C857544}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SystemTourBitech/Views/User/Index.cshtml">
+    <Files>
+      <File FileName="SystemTourBitech/Controllers/UserController.cs" Line="18" Column="50" />
+      <File FileName="Data/GenericRepository.cs" Line="33" Column="10" />
+      <File FileName="Core/Services/IKhachHangServices.cs" Line="1" Column="1" />
+      <File FileName="Core/Services/IUserServices.cs" Line="10" Column="44" />
+      <File FileName="SystemTourBitech/Views/User/ChangePassword.cshtml" Line="37" Column="52" />
+      <File FileName="SystemTourBitech/Views/User/Login.cshtml" Line="45" Column="2" />
+      <File FileName="Services/KhachHangService.cs" Line="28" Column="52" />
+      <File FileName="Core/Repository/IRepository.cs" Line="1" Column="1" />
+      <File FileName="SystemTourBitech/Views/User/LoggedIn.cshtml" Line="18" Column="56" />
+      <File FileName="SystemTourBitech/Views/User/Register.cshtml" Line="101" Column="46" />
+      <File FileName="SystemTourBitech/Views/User/Index.cshtml" Line="8" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/App_Start/NinjectWebCommon.cs" relfile="SystemTourBitech/App_Start/NinjectWebCommon.cs" line="78" column="69" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SystemTourBitech PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.TestingModel PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

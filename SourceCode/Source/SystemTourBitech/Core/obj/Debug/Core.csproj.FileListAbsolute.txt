@@ -1,0 +1,15 @@
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/Core.dll.config
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/Core.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/Core.pdb
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/EntityFramework.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/EntityFramework.SqlServer.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/MySql.Data.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/MySql.Data.Entity.EF6.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/MySql.Data.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/MySql.Data.Entity.EF6.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/EntityFramework.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/bin/Debug/EntityFramework.SqlServer.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/obj/Debug/Core.csprojResolveAssemblyReference.cache
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/obj/Debug/Core.csproj.CoreCompileInputs.cache
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/obj/Debug/Core.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/obj/Debug/Core.pdb
