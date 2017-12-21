@@ -24,7 +24,8 @@ namespace SystemTourBitech.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            List<DanhGiaTour> listKhachHang = khachhang.LKDanhGiaTour();
+            return View(listKhachHang);
         }
 
         public ActionResult Register()
@@ -34,17 +35,25 @@ namespace SystemTourBitech.Controllers
 
         [HttpPost]
         public ActionResult Register(KhachHang account)
-        {
+        { 
+
             if(ModelState.IsValid)
             {
-                bool checking = khachhang.DangKyThongTinKhachHang(account);
-                Console.WriteLine(checking);
-                if(checking == true) 
+                // kiem tra xem co dong nhat 
+                if(khachhang.IsUnique(account.Username))
                 {
-                    @ViewBag.Messages = account.Username + " register success!!!";
+                    bool checking = khachhang.DangKyThongTinKhachHang(account);
+                    if (checking == true)
+                    {
+                        @ViewBag.Messages = account.Username + " register success!!!";
+                    }
+                    else
+                    {
+                        @ViewBag.Messages = account.Username + " register fail!!!";
+                    }
                 }
                 else {
-                    @ViewBag.Messages = account.Username + " register fail!!!";   
+                    @ViewBag.Messages = "Username is used !!";
                 }
 
                 ModelState.Clear();

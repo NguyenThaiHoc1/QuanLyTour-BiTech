@@ -16,8 +16,6 @@ namespace Core.Model
         public DateTime? NgayThayDoi { get; set; }
 
         // mai mot se phat trien them 1 vai thuoc tinh nua trong day
-        public ICollection<Tour> Tours { get; set; }
-
-
+        public virtual ICollection<Tour> Tours { get; set; }
     }
 }

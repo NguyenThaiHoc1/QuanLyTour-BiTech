@@ -6,9 +6,6 @@ namespace Core.Model
 {
     public class DichVu
     {
-        public DichVu()
-        {
-        }
 
         [Key]
         public int idDichVu { get; set; }

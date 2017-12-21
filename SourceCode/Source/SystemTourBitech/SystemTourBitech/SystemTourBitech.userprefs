@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{76283555-86DF-44CC-9934-E7AB9C857544}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Admin/DashBoard.cshtml">
+    <Files>
+      <File FileName="Views/Shared/_Layout.cshtml" Line="11" Column="1" />
+      <File FileName="Controllers/AdminController.cs" Line="17" Column="10" />
+      <File FileName="Views/Admin/Login.cshtml" Line="6" Column="1" />
+      <File FileName="Views/Shared/Admin/_LayoutAdminInside.cshtml" Line="104" Column="29" />
+      <File FileName="Controllers/UserController.cs" Line="25" Column="36" />
+      <File FileName="Views/Admin/DashBoard.cshtml" Line="435" Column="10" />
+      <File FileName="Views/Shared/Admin/_HeaderMenu.cshtml" Line="31" Column="44" />
+      <File FileName="Views/Shared/Admin/_MainSideBar.cshtml" Line="57" Column="1" />
+      <File FileName="Views/Shared/Admin/_Footer.cshtml" Line="4" Column="1" />
+      <File FileName="Views/Shared/Admin/_SettingMenu.cshtml" Line="14" Column="61" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SystemTourBitech PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

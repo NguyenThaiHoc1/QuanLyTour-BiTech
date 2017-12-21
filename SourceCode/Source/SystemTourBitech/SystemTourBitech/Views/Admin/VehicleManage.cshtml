@@ -1,0 +1,190 @@
+﻿@model List<Core.Model.PhuongTien>
+
+@{
+    ViewBag.Title = "VehicleManage";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+
+<link rel="stylesheet" href="/Assets/Admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
+<section class="content-header">
+  <h1>
+    Vehicle Manage
+    <small>Control Vehicle System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li class="active">Vehicle Manage</li>
+  </ol>
+</section>
+
+@if(@TempData["Success"] != null)
+{   
+    <div class="form-group has-success" style="margin: 20px 20px">
+            <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> @TempData["Success"] </label>
+    </div>
+} 
+else if (@TempData["Fails"] != null)
+{
+    <div class="form-group has-error" style="margin: 20px 20px">
+        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> @TempData["Fails"] </label>
+    </div>
+}
+<section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+            
+           <div class="box">
+            <div class="box box-primary">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Add Account for Employee</h3>
+                      <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding" style="">
+						@RenderPage("./Pariticals/_FromVehicleManage.cshtml")
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+             </div>
+          </div>
+          <!-- End Box-->
+
+
+			
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Table With Full Features</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="display: none;">ID</th>
+				  <th style="display: none;">Create Date</th>
+				  <th style="display: none;">Bien So Xe</th>
+                  <th>Code Vehicle</th>
+                  <th>Vehicle Name</th>
+                  <th>Slot</th>
+                  <th>Update Date</th>
+				  <th>Status</th>
+                  <th>Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach(var x in Model)
+                    {
+                        <tr>
+                          <td class="vhid" style="display: none;">@x.idPhuongTien</td>
+                          <td style="display: none;">@x.NgayTao</td>
+                          <td class="biensoxe" style="display: none;">@x.BienSoXe</td>
+                          <td class="maphuongtien">@x.maPhuongTien</td>
+                          <td class="tenphuongtien">@x.tenPhuongTien</td>
+                          <td class="sochongoi">@x.SoChoNgoi</td>
+                          <td>@x.NgayThayDoi</td>
+						  <td>
+                            @if(@x.TinhTrang == "1")
+							{
+                                 <a class="actionButton btn btn-success btn-xs" >ACTIVE</a>
+
+							}
+                            else if (@x.TinhTrang == "2")
+							{
+                                <a class="actionButton btn btn-danger btn-xs" >NOT ACTIVE</a>
+
+							}
+                            else 
+                            {
+                                <a class="actionButton btn btn-warning btn-xs">MAINTENA</a>
+                               
+						    }
+						 </td>
+                          <td><button class="editbtn btn btn-primary fa fa-pencil" data-toggle="modal" data-id=@x.idPhuongTien data-target="#VehiclemyModal"></button></td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th style="display: none;">ID</th>
+                  <th style="display: none;">Create Date</th>
+                  <th style="display: none;">Bien So Xe</th>
+                  <th>Code Vehicle</th>
+                  <th>Vehicle Name</th>
+                  <th>Slot</th>
+                  <th>Update Date</th>
+                  <th>Status</th>
+                  <th>Edit</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+</section>
+    <!-- /.content -->
+
+<!-- Modal -->
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EDIT ACCOUNT</h4>
+        </div>
+        <div class="modal-body">
+		    @RenderPage("./Pariticals/_FromModalVehicle.cshtml")
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- JS -->
+<script src="/Assets/Admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/Assets/Admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+
+$(function () { 
+
+    $(".editbtn").click(function(){
+
+
+	    var idvehicle = $(this).parent().parent().find(".vhid").text();
+        var maPhuongTien = $(this).parent().parent().find(".maphuongtien").text();
+        var tenPhuongTien = $(this).parent().parent().find(".tenphuongtien").text();
+        var biensoxe = $(this).parent().parent().find(".biensoxe").text(); 
+        var slot = $(this).parent().parent().find(".sochongoi").text(); 
+
+
+	    $("#vehicleid").val(idvehicle);
+        $("#codevehicle1").val(maPhuongTien);
+        $("#vehiclename1").val(tenPhuongTien);
+        $("#license1").val(biensoxe);
+	    $("#slot").val(slot)
+
+        $("#myModal").modal();
+    });
+	
+    $('#example1').DataTable();
+       
+})
+</script>

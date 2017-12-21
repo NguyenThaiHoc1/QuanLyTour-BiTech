@@ -6,10 +6,6 @@ namespace Core.Model
 {
     public class PhuongTien
     {
-        public PhuongTien()
-        {
-        }
-
         [Key]
         public int idPhuongTien { get; set; }
         public string maPhuongTien { get; set; }

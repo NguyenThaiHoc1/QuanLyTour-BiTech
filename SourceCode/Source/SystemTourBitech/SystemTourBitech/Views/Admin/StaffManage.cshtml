@@ -1,0 +1,260 @@
+﻿@model SystemTourBitech.Models.NhanVienUser
+
+@{
+    ViewBag.Title = "StaffManage";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+<link rel="stylesheet" href="/Assets/Admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
+<section class="content-header">
+  <h1>
+    Staff Account
+    <small>Control Account System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li class="active">Staff Manage</li>
+  </ol>
+</section>
+
+@if(@TempData["Success"] != null)
+{   
+    <div class="form-group has-success" style="margin: 20px 20px">
+	        <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> @TempData["Success"] </label>
+	</div>
+} 
+else if (@TempData["Fails"] != null)
+{
+    <div class="form-group has-error" style="margin: 20px 20px">
+	    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> @TempData["Fails"] </label>
+    </div>
+}
+<section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Table With Full Features</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+				  <th style="display: none;">ID</th>
+                  <th style="display: none;">Fullname</th>
+				  <th style="display: none;">DiaChi</th>
+				  <th style="display: none;">Password</th>
+                  <th>Email</th>
+                  <th>SDT</th>
+                  <th>Username</th>
+                  <th>Update Date</th>
+				  <th>Type User</th>
+                  <th>Edit</th>
+				  <th>Block</th>
+                </tr>
+                </thead>
+                <tbody>
+				@foreach(var x in Model.nhanvien)
+                    {
+						<tr >
+                          <td class="id" style="display: none;">@x.idNhanvien</td>
+						  <td class="fullname" style="display: none;">@x.HoTen</td>
+    					  <td class="diachi" style="display: none;">@x.DiaChi</td>
+    					  <td class="password" style="display: none;">@x.password</td>
+                          <td class="email">@x.Email</td>
+                          <td class="SDT">@x.SoDienThoai</td>
+                          <td class="username">@x.username</td>
+                          <td>@x.NgayThayDoi</td>
+                          <td class="usertype" value=@x.LoaiNhanVienID>@x.LoaiNhanVien.tenLoaiNhanVien</td>
+						  <td><button class="editbtn btn btn-primary fa fa-pencil" data-toggle="modal" data-id=@x.idNhanvien data-target="#orderModal"></button></td>
+						  <td>
+
+                                @if (@x.ActiveAccount == true)
+								{
+                                    <a class="actionButton btn btn-success btn-xs" data-bean-id="@x.idNhanvien">BLOCK</a>
+
+								}
+                                else{
+                                     <a class="actionActive btn btn-danger btn-xs" data-bean-id="@x.idNhanvien">ACTIVE</a>
+								}
+
+						  </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                <tr>
+				  <th style="display: none;">ID</th>
+                  <th>Email</th>
+                  <th>SDT</th>
+                  <th>Username</th>
+                  <th>Update Date</th>
+				  <th>Type User</th>
+				<th>Edit</th>
+                  <th>Block</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+		  <div class="box">
+		    <div class="box box-primary">
+			    <div class="box box-solid">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Add Account for Employee</h3>
+                      <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding" style="">
+                          @RenderPage("./Pariticals/_FromAddUser.cshtml")
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+
+             </div>
+				
+		  </div>
+		  <!-- End Box-->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+</section>
+    <!-- /.content -->
+
+<!-- Modal -->
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EDIT ACCOUNT</h4>
+        </div>
+        <div class="modal-body">
+          @RenderPage("./Pariticals/_FromModalEmployee.cshtml")
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- JS -->
+<script src="/Assets/Admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/Assets/Admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+
+
+    function clickblockAccount() 
+    {
+        var beanId = $(this).data('beanId');
+        
+        // alert('Bean value:' + beanId)
+
+        var messagesbox = $(this);
+        $.ajax({
+            method: "POST",
+            url: "/Admin/blockUser",
+            data: { blockrequestid: beanId}
+        }).done(function(data) {
+
+            if (data.Status == true)
+            {
+                messagesbox.removeClass('actionButton btn-success');
+                messagesbox.addClass('actionActive btn-danger');
+                messagesbox.text('ACTIVE')
+	            messagesbox.click(clickActiveAccount);
+
+            }
+            else {
+            }
+
+        });
+    }
+
+
+
+
+	function clickActiveAccount() 
+    {
+        var beanId = $(this).data('beanId');
+       
+        var messagesbox = $(this);
+        $.ajax({
+            method: "POST",
+            url: "/Admin/activeUser",
+            data: { blockrequestid: beanId}
+        }).done(function(data) {
+            if (data.Status == true)
+            {
+                
+                messagesbox.removeClass('actionActive btn-danger');
+                messagesbox.addClass('actionButton btn-success');
+                messagesbox.text('BLOCK');
+	            messagesbox.click(clickblockAccount);
+            
+            }
+            else {
+            }
+        })
+    
+    }
+
+
+	$('.actionButton').click(clickblockAccount)
+	$('.actionActive').click(clickActiveAccount)
+    
+	
+  $(function () {	
+    
+
+	
+    $(".editbtn").click(function(){
+
+	
+        var fullname = $(this).parent().parent().find(".fullname").text();
+	    var diachi = $(this).parent().parent().find(".diachi").text();
+	    var password = $(this).parent().parent().find(".password").text();
+	    var email = $(this).parent().parent().find(".email").text();
+	    var SDT = $(this).parent().parent().find(".SDT").text();
+	    var username = $(this).parent().parent().find(".username").text();
+        var usertype = $(this).parent().parent().find(".usertype").attr("value");
+        var oldid = $(this).parent().parent().find(".id").text();
+
+
+	    $("#oldid").val(oldid);
+	    $("#email1").val(email);
+        $("#fullname1").val(fullname);
+    	$("#username1").val(username);
+    	$("#password1").val(password);
+    	$("#AddressEdit").val(diachi);
+	    $("#phoneSDT").val(SDT);
+        //$('select3 option:contains("MANAGER")').attr("selected",true);
+
+	
+	    $("#myModal").modal();
+	});
+	
+    $('#example1').DataTable();
+
+	
+  })
+</script>
+
+
+
+
+

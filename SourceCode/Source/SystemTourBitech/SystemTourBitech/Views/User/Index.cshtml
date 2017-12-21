@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Core.Model.DanhGiaTour
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,3 +7,9 @@
 <h2>Index</h2>
 
 @Html.ActionLink("back to Login", "Login")  
+
+
+@foreach(var x in Model)
+{
+    <h1>x.NgayTao</h1>
+}

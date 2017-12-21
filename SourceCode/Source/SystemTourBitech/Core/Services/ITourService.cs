@@ -16,5 +16,9 @@ namespace Core.Services
         bool UpdateThongTinTour(Tour tourupdate);
 
         bool AddDichVuTour(string maTour, List<DichVu> listdv);
+
+        Tour getinfoTour(string id);
+
+        List<Tour> getalllist();
     }
 }

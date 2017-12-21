@@ -1,0 +1,135 @@
+﻿@model List<Core.Model.Tour>
+
+@{
+    ViewBag.Title = "PerfromTour";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+
+<section class="content-header">
+  <h1>
+    Vehicle Manage
+    <small>Control Vehicle System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li class="active">Vehicle Manage</li>
+  </ol>
+</section>
+
+
+<section class="content">
+      <div class="row">
+          <div class="box">
+            <div class="box-header">
+				<div class="col-md-10">
+					<h3 class="box-title">Data Table With Full Features</h3>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-block btn-success">
+						<a class="btn-success " href="/Admin/mangaTour"><i class="fa fa-plus" aria-hidden="true"></i></a>
+					</button>
+				</div>
+              
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="display: none;">ID</th>
+				  <th>MÃ TOUR</th>
+                  <th>TITLE TOUR</th>
+                  <th>PLACE(KHỞI HÀNH)</th>
+                  <th>PLACE(ĐIỂM ĐẾN)</th>
+                  <th>STARTDATE</th>
+                  <th>ENDDATE</th>
+                  <th>STATUS</th>
+				  <th>EDIT</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach(var x in Model)
+                    {
+                        <tr>
+                          <td style="display: none;">@x.idTour</td>
+    					  <td>@x.maTour</td>
+    					  <td>@x.titleTour</td>
+    					  <td>@x.DiaDiemKhoiHanh</td>
+    					  <td>@x.DiaDiemDen</td>
+						  <td>@x.StartDate</td>
+                          <td>@x.EndDate</td>
+                          <td>
+                            @if(@x.Status == int.Parse("1"))
+                            {
+                                 <a class="actionButton btn btn-success btn-xs" >ACTIVE</a>
+                            }
+                            else if (@x.Status == int.Parse("2"))
+                            {
+                                <a class="actionButton btn btn-danger btn-xs" >NOT ACTIVE</a>
+                            }
+                            else 
+                            {
+                                <a class="actionButton btn btn-warning btn-xs">MAINTENA</a>
+                            }
+                         </td>
+						 <td>
+                            <a href="#" class="btn btn-primary btn-xs">EDIT</a>
+					     </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th style="display: none;">ID</th>
+                  <th>MÃ TOUR</th>
+                  <th>TITLE TOUR</th>
+                  <th>PLACE(KHỞI HÀNH)</th>
+                  <th>PLACE(ĐIỂM ĐẾN)</th>
+                  <th>STARTDATE</th>
+                  <th>ENDDATE</th>
+                  <th>STATUS</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      <!-- /.row -->
+</section>
+    <!-- /.content -->
+
+<!-- Modal -->
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EDIT ACCOUNT</h4>
+        </div>
+        <div class="modal-body">
+            @RenderPage("./Pariticals/_FromModalVehicle.cshtml")
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- JS -->
+<script src="/Assets/Admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/Assets/Admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+
+$(function () { 
+    $('#example1').DataTable();
+})
+</script>

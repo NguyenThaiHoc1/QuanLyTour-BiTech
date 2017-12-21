@@ -86,20 +86,24 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleCrypto">
+      <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Nav\" />
     <Folder Include="Views\Tour\" />
-    <Folder Include="Views\NhanVien\" />
-    <Folder Include="Views\DichVu\" />
-    <Folder Include="Views\ServiesPage\" />
-    <Folder Include="Views\DanhGiaTour\" />
     <Folder Include="Views\Shared\CommonTemplate\" />
     <Folder Include="Views\Shared\listItemPages\" />
+    <Folder Include="Views\Shared\Admin\" />
+    <Folder Include="Views\Admin\Pariticals\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\Tour\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -109,6 +113,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Models\NhanVienUser.cs" />
+    <Compile Include="Models\MessageFlash.cs" />
+    <Compile Include="Content\ImageUpload.cs" />
+    <Compile Include="Models\ImageResult.cs" />
+    <Compile Include="Models\AddTourLoading.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -125,6 +135,26 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\LoggedIn.cshtml" />
     <Content Include="Views\User\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Shared\Admin\_LayoutAdmim.cshtml" />
+    <Content Include="Views\Shared\Admin\_LayoutAdminInside.cshtml" />
+    <Content Include="Views\Admin\DashBoard.cshtml" />
+    <Content Include="Views\Shared\Admin\_HeaderMenu.cshtml" />
+    <Content Include="Views\Shared\Admin\_MainSideBar.cshtml" />
+    <Content Include="Views\Shared\Admin\_Footer.cshtml" />
+    <Content Include="Views\Shared\Admin\_SettingMenu.cshtml" />
+    <Content Include="Views\Admin\StaffManage.cshtml" />
+    <Content Include="Views\Admin\Pariticals\_FromAddUser.cshtml" />
+    <Content Include="Views\Admin\Pariticals\_FromModalEmployee.cshtml" />
+    <Content Include="Views\Admin\Profileuser.cshtml" />
+    <Content Include="Views\Admin\VehicleManage.cshtml" />
+    <Content Include="Views\Admin\Pariticals\_FromVehicleManage.cshtml" />
+    <Content Include="Views\Admin\Pariticals\_FromModalVehicle.cshtml" />
+    <Content Include="Views\Admin\mangaTour.cshtml" />
+    <Content Include="Views\Admin\testingview.cshtml" />
+    <Content Include="Views\Admin\UploadTour.cshtml" />
+    <Content Include="Views\Admin\PerfromTour.cshtml" />
+    <Content Include="Views\Admin\UpdateTour.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docs\MySqlTransaction.xml" />

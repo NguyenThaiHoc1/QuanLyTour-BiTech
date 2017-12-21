@@ -67,6 +67,15 @@ namespace SystemTourBitech.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IKhachHangServices>().To<KhachHangService>();
+
+            kernel.Bind<INhanVienService>().To<NhanVienService>();
+
+            kernel.Bind<ILoaiNhanVien>().To<LoaiNhanVienServies>();
+
+            kernel.Bind<ITourPhuongTien>().To<TourPhuongTienServices>();
+
+            kernel.Bind<ITourService>().To<TourServices>();
+
         }        
     }
 }

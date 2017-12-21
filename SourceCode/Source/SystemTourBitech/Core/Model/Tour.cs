@@ -1,40 +1,44 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Model
 {
     public class Tour
     {
-        public Tour()
-        {
-        }
 
         [Key]
         public int idTour { get; set; }
-        public string MaTour { get; set; }
-        public string DiemDi { get; set; }
-        public string DiemDen { get; set; } // co diem den ma eo co diem di
-        public string LoTrinh { get; set; } // cho nay ngu vai
-        public string TitleTour { get; set; }
-        public string MoTaTour { get; set; }
-        public string HinhAnhTour { get; set; }
+        public string maTour { get; set; }
+        public string titleTour { get; set; }
+        public string DiaDiemKhoiHanh { get; set; }
+        public string DiaDiemDen { get; set; }
+        public DateTime StartDate { get; set; }
+        public string TenNhaCungCap { get; set; }
+        public string DiaChi { get; set; }
+        public string phonenumber { get; set; }
+        public decimal GiaDatNgay { get; set; }
+        public int Status { get; set; }
+        public DateTime EndDate { get; set; }
+        public string hinhanh1 { get; set; }
+        public string hinhanh2 { get; set; }
+        public string hinhanh3 { get; set; }
+        public string thongtingia { get; set; }
+        public string thongtinlichtrinh { get; set; }
+        public string thongtinchinhsach { get; set; }
+        public DateTime NgayTao { get; set; }
+        public DateTime NgayThayDoi { get; set; }
 
-        public DateTime? ThoiGianDuTinh { get; set; }
-        public string TenTour { get; set; }
-        public decimal ChiPhi { get; set; }
-        public int GioiHanTour { get; set; }
-        public string TrangThai { get; set; }
-        public DateTime? NgayTao { get; set; }
-        public DateTime? NgayThayDoi { get; set; }
 
+        [ForeignKey("LoaiTour")]
+        public int LoaiTourID { get; set; }
 
         // khoa ngoai: DichVu, PhuongTien, LoaiTour 
-        public virtual LoaiTour maLoaiTour { get; set; }
+        public virtual LoaiTour LoaiTour { get; set; }
         public virtual ICollection<DichVu> DichVuTours { get; set; } // many - many 
         public virtual ICollection<PhuongTien> PhuongTiens { get; set; } // many - many
         public virtual ICollection<DanhGiaTour> DanhGiaTours { get; set; }
-
-        public virtual TheThanhToan TheThanhToan { get; set; }
+        public virtual ICollection<KhachHang> KhachHangs { get; set; }
     }
 }

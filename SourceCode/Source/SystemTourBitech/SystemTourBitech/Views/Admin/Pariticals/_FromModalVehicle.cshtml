@@ -1,0 +1,125 @@
+﻿
+
+<form role="form" id="addVehicle1" action="/Admin/UpdateVehicle" method="post">
+  <div class="box-body">
+	<div class="row">
+         <div class="col-md-6"> 
+
+		    <input type="text" name="vehicleid" id="vehicleid" style="display: none;" >
+
+            <div class="form-group">
+              <label for="codevehicle1">Code Vehicle</label>
+              <input type="text" class="form-control" id="codevehicle1" name="codevehicle1" placeholder="Code Vehicle">
+            </div>
+
+            <div class="form-group">
+              <label for="vehiclename1">Vehicle Name</label>
+              <input type="text" class="form-control" id="vehiclename1" name="vehiclename1" placeholder="Vehicle Name">
+            </div>
+
+			<div class="form-group">
+              <label for="slot">Slot</label>
+              <input type="text" class="form-control" id="slot" name="slot" placeholder="Slot">
+            </div>
+				
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+              <label for="license1">License Plate</label>
+              <input type="text" class="form-control" id="license1" name="license1" placeholder="License">
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control select2" style="width: 100%; height: 35px;" name="SelectRole1">
+                        <option value="1">ACTIVE</option>
+                        <option value="2">NOT ACTIVE</option>
+                        <option value="3">MAINTENACE</option>
+                </select>
+            </div>
+        </div>
+       
+    </div>
+   
+   <div class="">
+        <button type="submit" class="btn btn-primary">SAVE</button>
+   </div>
+    
+
+  </div>
+  <!-- /.box-body -->
+ 
+</form>
+
+
+
+
+<!-- Form JS -->
+
+<script>
+  $(function () {
+
+    $('.select2').select2()
+    $.validator.addMethod("noSpace", function(value, element) {
+    return value.indexOf(" ") < 0 && value != "";
+    }, "No space please and don't leave it empty");
+
+
+    $('#addVehicle1').validate({
+        rules: {
+          codevehicle1: {
+            required: true,
+            noSpace: true,
+            minlength: 10
+         },
+         vehiclename1: {
+                required: true,
+                minlength: 5
+           },
+         license1: {
+                required: true,
+                minlength: 10,
+                noSpace: true
+           },
+	     slot: {
+                required: true,
+                maxlength: 2,
+	            number: true
+	     }
+        }, 
+        messages: {
+            codevehicle1: {
+                required: "Please enter Code Vehicle",
+                noSpace: "No space in this string ! Please try again",
+	            minlength: "Vehicle Name must consist of at least 10 characters"
+            },
+            vehiclename1: {
+                required: "Please enter Vehicle Name",
+                minlength: "Vehicle Name must consist of at least 5 characters"
+            },
+            license1: {
+                required: "Please enter License ",
+                minlength: "License must consist of at least 5 characters",
+                noSpace: "No space in this string ! Please try again"
+            },
+	        slot: {
+                required: "Please enter Slot",
+                minlength: "Slot must consist of at least 2 characters",
+                number: "Only numbers"
+	        }
+        },
+        highlight: function (element) {
+            $(element).parent().removeClass('has-success')
+            $(element).parent().addClass('has-error')
+        },
+        unhighlight: function (element) {
+            $(element).parent().removeClass('has-error')
+            $(element).parent().addClass('has-success')
+        }
+    });
+
+    
+    $('[data-mask]').inputmask();
+  })
+</script>

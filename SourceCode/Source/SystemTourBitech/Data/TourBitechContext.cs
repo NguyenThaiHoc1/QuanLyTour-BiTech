@@ -66,6 +66,12 @@ namespace Data
                 cs.ToTable("TourPhuongTien");
             });
 
+            modelBuilder.Entity<Tour>().HasMany<KhachHang>(s => s.KhachHangs).WithMany(c => c.Tours).Map(cs =>
+            {
+                cs.MapLeftKey("TourRefId");
+                cs.MapRightKey("KhachHangRefId");
+                cs.ToTable("KhachHangChiTietTour");
+            });
 
             base.OnModelCreating(modelBuilder);
 

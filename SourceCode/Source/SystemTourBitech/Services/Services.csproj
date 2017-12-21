@@ -42,8 +42,10 @@
     <Compile Include="NhanVienService.cs" />
     <Compile Include="TheThanhToanService.cs" />
     <Compile Include="ThongBaoService.cs" />
-    <Compile Include="TourPhuongTien.cs" />
-    <Compile Include="Tour.cs" />
+    <Compile Include="LoaiNhanVienServies.cs" />
+    <Compile Include="HashMD5.cs" />
+    <Compile Include="TourServices.cs" />
+    <Compile Include="TourPhuongTienServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

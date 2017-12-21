@@ -1,4 +1,3 @@
-/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/obj/Debug/TestingModel.csproj.CoreCompileInputs.cache
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/bin/Debug/TestingModel.exe.config
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/bin/Debug/TestingModel.exe
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/bin/Debug/TestingModel.pdb
@@ -17,5 +16,6 @@
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/bin/Debug/EntityFramework.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/bin/Debug/EntityFramework.SqlServer.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/obj/Debug/TestingModel.csprojResolveAssemblyReference.cache
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/obj/Debug/TestingModel.csproj.CoreCompileInputs.cache
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/obj/Debug/TestingModel.exe
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/TestingModel/obj/Debug/TestingModel.pdb

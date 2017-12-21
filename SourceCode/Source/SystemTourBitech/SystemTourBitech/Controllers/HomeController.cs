@@ -7,14 +7,17 @@ using System.Web.Mvc.Ajax;
 
 
 using Core.Services;
+
 using Core.Model;
+
+
 
 
 namespace SystemTourBitech.Controllers
 {
     public class HomeController : Controller
     {
-
+        
         private readonly IKhachHangServices khachhang;
 
         public HomeController(IKhachHangServices _khachhang)
@@ -24,7 +27,7 @@ namespace SystemTourBitech.Controllers
 
         public ActionResult Index()
         {
-            bool checking = this.khachhang.IsUnique("thaihocmap123@gmail.com");
+            bool checking = this.khachhang.IsUnique("00Yuuta100");
 
             @ViewBag.count = (checking == true) ? "Không có" : "Đã có";
 

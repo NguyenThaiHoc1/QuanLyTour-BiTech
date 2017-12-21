@@ -1,0 +1,133 @@
+﻿
+<form role="form" id="addUserAccount1" action="/Admin/UpdateUser" method="post">
+  <div class="box-body">
+
+	<input type="text" name="oldid" id="oldid" style="display: none;" >
+    <div class="form-group">
+      <label for="email1">Email address</label>
+      <input type="email" class="form-control" id="email1" name="email1" placeholder="Enter email" >
+    </div>
+    <div class="form-group">
+      <label for="fullname1">Full Name</label>
+      <input type="text" class="form-control" id="fullname1" name="fullname1" placeholder="FullName">
+    </div>
+    <div class="form-group">
+      <label for="username1">Username</label>
+      <input type="text" class="form-control" id="username1" name="username1"  placeholder="FullName">
+    </div>
+    <div class="form-group">
+      <label for="password1">Password</label>
+      <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputAddress1">Address</label>
+      <textarea class="form-control" rows="3" id="AddressEdit" placeholder="Your Address you stay" name="address1" minlength="20" required></textarea>
+    </div>
+
+    <!-- phone mask -->
+      <div class="form-group">
+        <label>US phone mask:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-phone"></i>
+          </div>
+           <input type="text" class="form-control" id="phoneSDT" name="phone1" data-inputmask='"mask": "(999) 999-9999"' data-mask required>
+        </div>
+        <!-- /.input group -->
+      </div>
+      <!-- /.form group -->
+
+      <div class="form-group">
+        <label>Disabled Result</label>
+        <select class="form-control select3" style="width: 100%;" name="SelectRole1">
+          @foreach(var x in Model.loainhanvien)
+            {
+                <option value="@x.idLoaiNhanVien">@x.tenLoaiNhanVien</option>
+            }
+        </select>
+      </div>
+      <!-- /.form-group -->
+    
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer">
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+
+
+
+
+<!-- Form JS -->
+
+<script>
+  $(function () {
+
+    $('.select3').select2()
+	
+    $.validator.addMethod("noSpace", function(value, element) {
+    return value.indexOf(" ") < 0 && value != "";
+    }, "No space please and don't leave it empty");
+
+    $('#addUserAccount1').validate({
+        rules: {
+            email1: {
+                required: true,
+              email: true
+            },
+         fullname1: {
+                required: true,
+                minlength: 3
+           },
+         username1: {
+                required: true,
+                minlength: 5,
+                noSpace: true,
+                remote: {
+                    url: "/Admin/isUniqueUsername",
+                    type: "post",
+                    data:{
+                              username: function()
+                              {
+                                  return $('#addUserAccount1 :input[name="username1"]').val();
+                              }
+                          }
+                }
+           },
+         password1: {
+                required: true,
+                minlength: 5
+           }   
+       }, 
+        messages: {
+            email1: {
+                required: "Please enter your email",
+                email: "syntax email is incorrect !"
+         },
+            fullname1: {
+                required: "Please enter your name",
+                minlength: "Fullname must consist of at least 3 characters"
+         },
+         username1: {
+                required: "Please enter your username",
+                minlength: "Username must consist of at least 5 characters",
+                remote: jQuery.validator.format("{0} is already taken.")
+            },
+         password1: {
+                required: "Please enter your password",
+                minlength: "Password must consist of at least 5 characters"
+            }
+        },
+        highlight: function (element) {
+            console.log(element);
+            $(element).parent().removeClass('has-success')
+            $(element).parent().addClass('has-error')
+        },
+        unhighlight: function (element) {
+            $(element).parent().removeClass('has-error')
+            $(element).parent().addClass('has-success')
+        }
+    });
+    $('[data-mask]').inputmask();
+  })
+</script>

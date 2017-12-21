@@ -78,6 +78,7 @@
     <Compile Include="Services\ITourService.cs" />
     <Compile Include="Services\IUserServices.cs" />
     <Compile Include="Services\IKhachHangServices.cs" />
+    <Compile Include="Services\ILoaiNhanVien.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

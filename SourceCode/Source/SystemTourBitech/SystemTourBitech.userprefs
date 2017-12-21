@@ -1,23 +1,23 @@
 ﻿<Properties StartupConfiguration="{76283555-86DF-44CC-9934-E7AB9C857544}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="SystemTourBitech/Views/User/Index.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SystemTourBitech/Views/Admin/VehicleManage.cshtml">
     <Files>
-      <File FileName="SystemTourBitech/Controllers/UserController.cs" Line="18" Column="50" />
-      <File FileName="Data/GenericRepository.cs" Line="33" Column="10" />
-      <File FileName="Core/Services/IKhachHangServices.cs" Line="1" Column="1" />
-      <File FileName="Core/Services/IUserServices.cs" Line="10" Column="44" />
-      <File FileName="SystemTourBitech/Views/User/ChangePassword.cshtml" Line="37" Column="52" />
-      <File FileName="SystemTourBitech/Views/User/Login.cshtml" Line="45" Column="2" />
-      <File FileName="Services/KhachHangService.cs" Line="28" Column="52" />
-      <File FileName="Core/Repository/IRepository.cs" Line="1" Column="1" />
-      <File FileName="SystemTourBitech/Views/User/LoggedIn.cshtml" Line="18" Column="56" />
-      <File FileName="SystemTourBitech/Views/User/Register.cshtml" Line="101" Column="46" />
-      <File FileName="SystemTourBitech/Views/User/Index.cshtml" Line="8" Column="1" />
+      <File FileName="SystemTourBitech/Views/Admin/Pariticals/_FromModalEmployee.cshtml" Line="46" Column="14" />
+      <File FileName="SystemTourBitech/Controllers/AdminController.cs" Line="457" Column="28" />
+      <File FileName="SystemTourBitech/Views/Admin/PerfromTour.cshtml" Line="76" Column="39" />
+      <File FileName="Core/Services/ITourPhuongTien.cs" Line="18" Column="45" />
+      <File FileName="Services/TourServices.cs" Line="53" Column="41" />
+      <File FileName="Services/TourPhuongTienServices.cs" Line="67" Column="44" />
+      <File FileName="SystemTourBitech/Views/Admin/DashBoard.cshtml" Line="1" Column="1" />
+      <File FileName="SystemTourBitech/Views/Admin/UpdateTour.cshtml" Line="9" Column="1" />
+      <File FileName="SystemTourBitech/Views/Admin/UploadTour.cshtml" Line="1" Column="1" />
+      <File FileName="SystemTourBitech/Views/Admin/VehicleManage.cshtml" Line="11" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/App_Start/NinjectWebCommon.cs" relfile="SystemTourBitech/App_Start/NinjectWebCommon.cs" line="78" column="69" />
+      <Breakpoint file="/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/App_Start/NinjectWebCommon.cs" relfile="SystemTourBitech/App_Start/NinjectWebCommon.cs" line="87" column="69" />
+      <Breakpoint file="/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Core/App.config" relfile="Core/App.config" line="17" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

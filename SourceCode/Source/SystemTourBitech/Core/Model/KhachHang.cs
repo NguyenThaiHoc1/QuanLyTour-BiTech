@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Core.Model
@@ -37,6 +38,6 @@ namespace Core.Model
 
 
 
-
+        public virtual ICollection<Tour> Tours { get; set; }
     }
 }
