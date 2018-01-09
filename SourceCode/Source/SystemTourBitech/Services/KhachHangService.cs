@@ -58,7 +58,7 @@ namespace Services
         private string HashMD5(string Password)
         {
             string templateString = "";
-            using(MD5 md5Hash = MD5.Create()) 
+            using (MD5 md5Hash = MD5.Create())
             {
                 templateString = GetMd5Hash(md5Hash, Password);
             }
@@ -77,6 +77,7 @@ namespace Services
             IRepository<KhachHang> khachhanguow = uow.Repository<KhachHang>();
 
             KhachHang khachhangupdate = khachhanguow.Get((KhachHang arg) => arg.Username == id);
+
 
             khachhangupdate.Password = this.HashMD5(newPassword);
 
@@ -132,8 +133,8 @@ namespace Services
 
         public List<Core.Model.Tour> KiemTraLichSu(int idKhachHang)
         {
-            
-            throw new NotImplementedException();  
+
+            throw new NotImplementedException();
         }
 
         public List<DanhGiaTour> LKDanhGiaTour()
@@ -150,7 +151,73 @@ namespace Services
             throw new NotImplementedException();
         }
 
-        public KhachHang getUsername(string username) 
+        public List<KhachHang> getAllKhachHang()
+        {
+            IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+            IEnumerable<KhachHang> listKhachhang_raw = kh.GetAll();
+            return listKhachhang_raw.ToList();
+        }
+
+        public List<KhachHang> getAllUsername(string username)
+        {
+            IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+            IEnumerable<KhachHang> listKhachhang_raw = kh.GetAll((KhachHang arg) => arg.Username.Contains(username));
+            return listKhachhang_raw.ToList();
+        }
+
+        public List<KhachHang> getAllByName(string name)
+        {
+            IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+            IEnumerable<KhachHang> listKhachhang_raw = kh.GetAll((KhachHang arg) => arg.TenKH.ToUpper().Contains(name.ToUpper()));
+            return listKhachhang_raw.ToList();
+        }
+
+        public List<KhachHang> getAllByEmail(string email)
+        {
+            IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+            IEnumerable<KhachHang> listKhachhang_raw = kh.GetAll((KhachHang arg) => arg.Email.ToUpper().Contains(email.ToUpper()));
+            return listKhachhang_raw.ToList();
+        }
+
+        public bool BlockingCustomer(int idCustomer)
+        {
+            try
+            {
+                IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+                KhachHang khachhang_raw = kh.Get((KhachHang arg) => arg.idKhachHang == idCustomer);
+                khachhang_raw.TinhTrang = 0;
+                return (uow.SaveChange() > 0) ? true : false;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        public bool UnBlockingCustomer(int idCustomer)
+        {
+            try
+            {
+                IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+                KhachHang khachhang_raw = kh.Get((KhachHang arg) => arg.idKhachHang == idCustomer);
+                khachhang_raw.TinhTrang = 1;
+                return (uow.SaveChange() > 0) ? true : false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public KhachHang getCusumer(int idCustomer)
+        {
+            IRepository<KhachHang> kh = uow.Repository<KhachHang>();
+            KhachHang khachhang_raw = kh.Get((KhachHang arg) => arg.idKhachHang == idCustomer);
+            return khachhang_raw;
+        }
+
+        public KhachHang getUsername(string username)
         {
             throw new NotImplementedException();
         }

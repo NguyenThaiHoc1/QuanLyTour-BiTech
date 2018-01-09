@@ -4,15 +4,32 @@
     ViewBag.Title = "PerfromTour";
     Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
 }
+@if(@TempData["Success"] != null)
+{   
+    <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success !</h4>
+                @TempData["Success"]
+    </div>
+
+} 
+else if (@TempData["Fails"] != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Error ! Please Try Again</h4>
+                @TempData["Fails"]
+    </div>
+}
 
 <section class="content-header">
   <h1>
-    Vehicle Manage
+    Tour Manage
     <small>Control Vehicle System</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li class="active">Vehicle Manage</li>
+    <li class="active">Tour Manage</li>
   </ol>
 </section>
 
@@ -25,9 +42,7 @@
 					<h3 class="box-title">Data Table With Full Features</h3>
 				</div>
 				<div class="col-md-2">
-					<button type="button" class="btn btn-block btn-success">
-						<a class="btn-success " href="/Admin/mangaTour"><i class="fa fa-plus" aria-hidden="true"></i></a>
-					</button>
+					<a href="/Admin/mangaTour" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
 				</div>
               
             </div>
@@ -73,7 +88,7 @@
                             }
                          </td>
 						 <td>
-                            <a href="#" class="btn btn-primary btn-xs">EDIT</a>
+                            <a href=@("/Admin/UpdateTour?idTour=" + x.maTour) class="btn btn-primary btn-xs">EDIT</a>
 					     </td>
                         </tr>
                     }
@@ -88,6 +103,7 @@
                   <th>STARTDATE</th>
                   <th>ENDDATE</th>
                   <th>STATUS</th>
+				  <th>EDIT</th>
                 </tr>
                 </tfoot>
               </table>

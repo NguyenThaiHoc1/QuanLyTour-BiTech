@@ -1,0 +1,156 @@
+﻿@model List<Core.Model.facethongke>
+ 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+<link rel="stylesheet" href="/Assets/Admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<div class="row">
+    <section class="content-header">
+        <h1 class="col-sm-3">
+            Statistics
+            <small>Create Report</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li class="active">Statistics</li>
+        </ol>
+    </section>
+</div>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+    <form action="/FactThongKe/NapDuLieu" method="post">
+        <select class="form-control" id="thongketype" name="thongketype">
+            <option value="1" selected="selected">HoaDon</option>
+            <option value="2">HopDong</option>
+        </select>
+        <div class="box col-sm-2">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="NgayBD">Ngay Bat Dau</label>
+                    <input type="date" class="form-control" id="NgayBD" name="NgayBD" placeholder="Enter value">
+                </div>
+                <div class="form-group">
+                    <label for="NgayKT">Ngay Ket Thuc</label>
+                    <input type="date" class="form-control" id="NgayKT" name="NgayKT" placeholder="Enter value">
+                </div>
+            </div>
+ 
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Nap Du Lieu</button>
+                <button class="btn btn-default" value="Xuat Excel" style="color: white; right: 30px">
+                    @Html.ActionLink("Xuat Excel", "XuatExcel")
+                    <br />
+                </button>
+            </div>
+        </div>
+    </form>
+ 
+    </div>
+    </div>
+    <br />
+ 
+ 
+ 
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Statitics</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="display: none;">ID</th>
+                                    <th bgcolor="#b3e6ff">MaHoaDon</th>
+                                    <th bgcolor="#b3e6ff">MaHopDong</th>
+                                    <th bgcolor="#b3e6ff">SoLuong</th>
+                                    <th bgcolor="#b3e6ff">TongChiPhi</th>
+                                    <th bgcolor="#b3e6ff">DatCoc</th>
+                                    <th bgcolor="#b3e6ff">SoTienThanhToan</th>
+                                    <th bgcolor="#b3e6ff">LoaiHoaDon</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (@Model.Count != null)
+                                {
+                                    foreach (var item in @Model)
+                                    {
+                                        <tr>
+                                            <td class="id" style="display: none;">@item.ID</td>
+                                            <td class="fullname" style="display: none;"></td>
+                                            <td class="diachi" style="display: none;"></td>
+                                            <td class="password" style="display: none;"></td>
+                                            <td>@item.MaHopDong</td>
+                                            <td>@item.MaHoaDon</td>
+                                            <td>@item.SoLuong</td>
+                                            <td>@item.TongChiPhi</td>
+                                            <td>@item.DatCoc</td>
+                                            <td>@item.SoTienThanhToan</td>
+                                            <td>@item.LoaiHoaDon</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th style="display: none;">ID</th>
+                                    <th bgcolor="#b3e6ff">MaHoaDon</th>
+                                    <th bgcolor="#b3e6ff">MaHopDong</th>
+                                    <th bgcolor="#b3e6ff">SoLuong</th>
+                                    <th bgcolor="#b3e6ff">TongChiPhi</th>
+                                    <th bgcolor="#b3e6ff">DatCoc</th>
+                                    <th bgcolor="#b3e6ff">SoTienThanhToan</th>
+                                    <th bgcolor="#b3e6ff">LoaiHoaDon</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="box-footer">
+                        <div class="panel panel-info col-sm-2">
+                            <div class="panel-heading">Số Hoá Đơn</div><br />
+                            <div class="panel-body">
+                                @ViewBag.DemHoaDon
+                            </div>
+                        </div>
+                        <div class="panel panel-info col-sm-2">
+                            <div class="panel-heading">Số Hợp Đồng</div>
+                            <br />
+                            <div class="panel-body">
+                                @ViewBag.DemHopDong
+                            </div>
+                        </div>
+                        <div class="panel panel-info col-sm-2">
+                            <div class="panel-heading">Tổng Số Lượng</div><br />
+                            <div class="panel-body">
+                                @ViewBag.DemTongSoLuong
+                            </div>
+                        </div>
+                        <div class="panel panel-info col-sm-2">
+                            <div class="panel-heading">Tổng Chi Phí</div><br />
+                            <div class="panel-body">
+                                @ViewBag.TinhTongChiPhi
+                            </div>
+                        </div>
+                        <div class="panel panel-info col-sm-2">
+                            <div class="panel-heading">Tổng Đặt Cọc</div><br />
+                            <div class="panel-body">
+                                @ViewBag.TinhTongDatCoc
+                            </div>
+                        </div>
+                        <div class="panel panel-info col-sm-2">
+                            <div class="panel-heading">Đã Thanh Toán</div><br />
+                            <div class="panel-body">
+                                @ViewBag.TinhSoTienThanhToan
+                            </div>
+                        </div>
+ 
+                    </div>
+                </div>
+ 
+            </div>
+    </section>

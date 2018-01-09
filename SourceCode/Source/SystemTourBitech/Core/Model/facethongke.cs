@@ -19,10 +19,11 @@ namespace Core.Model
         public string MaHopDong { get; set; } // cai nay la khoa ngoai
         public string MaHoaDon { get; set; } // cai nay la khoa ngoai
         public int SoLuong { get; set; }
-        public double TongChiPhi { get; set; }
-        public double DatCoc { get; set; }
-        public double SoTienThanhToan { get; set; }
+        public decimal TongChiPhi { get; set; }
+        public decimal DatCoc { get; set; }
+        public decimal SoTienThanhToan { get; set; }
         public string LoaiHoaDon { get; set; }
+        public DateTime NgayTao { get; set; }
 
         public virtual Ngay MaNgayThanhToan { get; set; }
 

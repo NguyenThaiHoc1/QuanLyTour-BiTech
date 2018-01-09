@@ -1,0 +1,101 @@
+﻿<form role="form" id="addVehicle1" action="/Admin/AddBillByMaHopDong" method="post">
+  <div class="box-body">
+    <div class="row">
+         <div class="col-md-6"> 
+
+            <div class="form-group">
+              <label for="mahopdong">MÃ HỢP ĐỒNG</label>
+              <input type="text" class="form-control" id="mahopdong" name="mahopdong" placeholder="Nhập mã hợp đồng">
+            </div>
+
+				
+            <div class="form-group">
+              <label for="mahoadon">MÃ HÓA ĐƠN</label>
+              <input type="text" class="form-control" id="mahoadon" name="mahoadon" placeholder="Mã Hóa Đơn">
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="slot">SỐ TIỀN THANH TOÁN</label>
+              <input type="text" class="form-control" id="slot" name="slot" placeholder="Slot">
+            </div>
+				
+            <div class="form-group">
+                <label>HÌNH THỨC THANH TOÁN</label>
+                <select class="form-control select2" style="width: 100%; height: 35px;" name="SelectRole1">
+                        <option value="1">THANH TOÁN TIỀN MẶT</option>
+                        <option value="2">THẺ TÍN DỤNG</option>
+                </select>
+            </div>
+        </div>
+       
+    </div>
+   
+   <div class="">
+        <button  class="btn btn-primary">SAVE</button>
+   </div>
+    
+
+  </div>
+  <!-- /.box-body -->
+</form>
+
+
+<script src="/Assets/Admin/jquery.validate.js"></script>
+
+<!-- Form JS -->
+
+<script>
+  $(function () {
+
+    $.validator.addMethod("noSpace", function(value, element) {
+    return value.indexOf(" ") < 0 && value != "";
+    }, "No space please and don't leave it empty");
+
+
+    $('#addVehicle1').validate({
+        rules: {
+          mahopdong: {
+            required: true,
+            noSpace: true,
+            minlength: 3
+         },
+         mahoadon: {
+                required: true,
+                minlength: 3
+           },
+         slot: {
+                required: true,
+                number: true
+         }
+        }, 
+        messages: {
+            codevehicle1: {
+                required: "Please enter Code Vehicle",
+                noSpace: "No space in this string ! Please try again",
+                minlength: "Vehicle Name must consist of at least 3 characters"
+            },
+            vehiclename1: {
+                required: "Please enter Vehicle Name",
+                minlength: "Vehicle Name must consist of at least 3 characters"
+            },
+            slot: {
+                required: "Please enter Slot",
+                number: "Only numbers"
+            }
+        },
+        highlight: function (element) {
+            $(element).parent().removeClass('has-success')
+            $(element).parent().addClass('has-error')
+        },
+        unhighlight: function (element) {
+            $(element).parent().removeClass('has-error')
+            $(element).parent().addClass('has-success')
+        }
+    });
+
+})
+</script>

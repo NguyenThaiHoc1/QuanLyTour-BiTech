@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<Core.Model.Tour>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+
+
+</style>
+
+<div class="content">
+  <div class="tour-banner">
+    <div class="text-tour-banner">
+      <h3>Travel Around The World</h3>
+    </div>
+  </div>
+  <div class="container">
+
+    <div class="row">    
+            <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="padding: 6.4px 20px !important;">
+                        <span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" style="padding: 6.4px 20px !important;"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+    </div>
+		<div class="row">
+		@foreach(var item in Model)
+		{
+                
+
+                  <div class="col-sm-4 tour tour">
+                    <a href="/Home/Details/@item.maTour" >
+                        <div class="tour-image thumbnail" style="width: 300px; height: 200px;">
+                            <img src=@("/Images/Tour/" + item.hinhanh1) alt="" /> 
+                              <div class="tour-name">
+                                <h5>@item.titleTour</h5>
+                              </div>
+                        </div>
+                    </a>
+
+                    <div>
+                      <i class ="fa fa-calendar"></i> @item.EndDate.Subtract(item.StartDate).Days.ToString() Days
+                    </div>
+                    <div>
+                      <i class = "fa fa-money"></i> $ @item.GiaDatNgay USD
+                    </div>
+                </div>
+			  
+		}
+         </div>
+
+		 <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Tour", 
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+  </div>
+
+</div>

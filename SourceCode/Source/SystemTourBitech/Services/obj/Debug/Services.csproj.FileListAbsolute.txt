@@ -2,6 +2,7 @@
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Services.pdb
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Core.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Data.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Newtonsoft.Json.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/EntityFramework.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/MySql.Data.Entity.EF6.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/MySql.Data.dll
@@ -9,6 +10,7 @@
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Core.dll.config
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Data.pdb
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Data.dll.config
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/Newtonsoft.Json.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/EntityFramework.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/MySql.Data.Entity.EF6.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/Services/bin/Debug/MySql.Data.xml

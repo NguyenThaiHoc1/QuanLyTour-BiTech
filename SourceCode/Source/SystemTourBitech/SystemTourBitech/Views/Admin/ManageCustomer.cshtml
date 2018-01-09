@@ -1,0 +1,174 @@
+﻿@model PagedList.IPagedList<Core.Model.KhachHang>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "ManageCustomer";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+
+@if(@TempData["Success"] != null)
+{   
+    <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success !</h4>
+                @TempData["Success"]
+    </div>
+
+} 
+else if (@TempData["Fails"] != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Error ! Please Try Again</h4>
+                @TempData["Fails"]
+    </div>
+}
+
+
+<section class="content-header">
+  <h1>
+    Manage Customer
+    <small>Control Consumer System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li class="active">Manage Customer</li>
+  </ol>
+</section>
+
+
+
+<section class="content">
+                <div class="box">
+                    <div class="box-header with-border">
+                            <form action="/Admin/ManageCustomer" method="get">
+                                <div class="input-group">
+                                    <div class="input-group-btn search-panel">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <select class="" name="sortOrder">
+                                                  <option data-tokens="ketchup mustard" value="fullthings">ALL</option>
+                                                  <option data-tokens="mustard" value="name">FULL NAME</option>
+                                                  <option data-tokens="frosting" value="email">EMAIL</option>
+								                  <option data-tokens="frosting" value="username">USERNAME</option>
+                                                </select>
+						                </button>
+
+
+						                
+                                    </div>
+                                    <input type="hidden" name="search_param" value="all" id="search_param">         
+                                    <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Search term...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>
+                                    </span>
+                                </div>
+                            </form>
+                    </div>
+			   </div>
+
+
+
+            <div class="box">
+                <div class="box-header">
+                        <h3 class="box-title">Customer</h3>
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+			        <table class="table table-striped custab">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên Khách Hàng</th>
+                                        <th>Username</th>
+						                <th>Email</th>
+						                <th>Giới tính</th>
+                                        <th class="text-center">Status</th>
+                                    </tr>
+                                </thead>
+				                        @foreach(var x in Model)
+				                        {
+                                                <tr>
+                                                    <td>@x.idKhachHang</td>
+                                                    <td>@x.TenKH</td>
+                                                    <td>@x.Username</td>
+					                                <td>@x.Email</td>
+                                                    <td>@x.GioiTinh</td>
+                                                    <td class="text-center">
+
+
+                                                        @if (@x.TinhTrang == 1)
+                                                        {
+                                                            <a class='actionButton btn btn-info btn-xs' data-bean-id="@x.idKhachHang"><span class="glyphicon glyphicon-edit"></span> BLOCK</a> 
+
+                                                        }
+                                                        else{
+                                                            <a class='actionActive btn btn-danger btn-xs' data-bean-id="@x.idKhachHang"><span class="glyphicon glyphicon-edit"></span> ACTIVE</a> 
+                                                        }
+
+                                                            <a href=@("/Admin/ProfileConSumer?id=" + x.idKhachHang) class="btn btn-warning btn-xs"><span class="fa fa-eye"></span> View</a>
+                                                    </td>
+                                                </tr>
+				                        }   
+                                        
+
+                          </table>
+			             <br />
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                            @Html.PagedListPager(Model, page => Url.Action("ManageCustomer", 
+                                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+			        
+    			</div>
+		    </div>
+
+
+           
+	
+</section>
+
+
+<script>
+
+
+
+	
+    $('.actionButton').click(function(e){
+        e.preventDefault();
+        if (window.confirm("Are you sure Block?")) {
+
+                var beanId = $(this).data('beanId');
+
+                var messagesbox = $(this);
+                            
+                $.ajax({
+                    method: "POST",
+                    url: "/Admin/ManageCustomerBlock",
+                    data: { id: beanId }
+                }).done(function(data) {
+	                window.location.href = data;
+                });
+	
+        }
+	})
+
+	$('.actionActive').click(function(e){
+        e.preventDefault();
+        if (window.confirm("You want to active User?")) {
+                var beanId = $(this).data('beanId');
+
+                var messagesbox = $(this);
+                            
+                $.ajax({
+                    method: "POST",
+                    url: "/Admin/ManageCustomerUnBlock",
+                    data: { id: beanId }
+                }).done(function(data) {
+                    window.location.href = data;
+                });
+        }
+    })
+</script>

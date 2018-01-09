@@ -46,6 +46,8 @@
     <Compile Include="HashMD5.cs" />
     <Compile Include="TourServices.cs" />
     <Compile Include="TourPhuongTienServices.cs" />
+    <Compile Include="FactThongKeService.cs" />
+    <Compile Include="ChiTietKhachHangTourService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

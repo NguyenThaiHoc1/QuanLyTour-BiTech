@@ -1,0 +1,512 @@
+body {
+     font: 400 15px/1.8 Lato, sans-serif;
+     color: #777;
+ }
+ * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;  
+ }
+ h3, h4 {
+     margin: 10px 0 30px 0;
+     letter-spacing: 10px;
+     font-size: 20px;
+     color: #111;
+ }
+ .container {
+     padding: 80px 120px;
+ }
+ .person {
+     border: 10px solid transparent;
+     margin-bottom: 25px;
+     width: 80%;
+     height: 80%;
+     opacity: 0.7;
+ }
+ .person:hover {
+     border-color: #f1f1f1;
+ }
+ .carousel-inner img {
+     -webkit-filter: grayscale(90%);
+     filter: grayscale(90%); /* make all photos black and white */
+     width: 100%; /* Set width to 100% */
+     margin: auto;
+ }
+ .carousel-caption h3 {
+     color: #fff !important;
+ }
+ @media (max-width: 600px) {
+   .carousel-caption {
+     display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+   }
+ }
+ .bg-1 {
+     background: #BAB7A3;
+     color: #bdbdbd;
+ }
+ .bg-1 h3 {color: #fff;}
+ .bg-1 p {font-style: italic;}
+ .list-group-item:first-child {
+     border-top-right-radius: 0;
+     border-top-left-radius: 0;
+ }
+ .list-group-item:last-child {
+     border-bottom-right-radius: 0;
+     border-bottom-left-radius: 0;
+ }
+ .thumbnail {
+     padding: 0 0 15px 0;
+     border: none;
+     border-radius: 0;
+ }
+ .thumbnail p {
+     margin-top: 15px;
+     color: #555;
+ }
+ .btn {
+     padding: 10px 20px;
+     background-color: #333;
+     color: #f1f1f1;
+     border-radius: 0;
+     transition: .2s;
+ }
+ .btn:hover, .btn:focus {
+     border: 1px solid #333;
+     background-color: #fff;
+     color: #000;
+ }
+ .modal-header, h4, .close {
+     background-color: #333;
+     color: #fff !important;
+     text-align: center;
+     font-size: 30px;
+ }
+ .modal-header, .modal-body {
+     padding: 40px 50px;
+ }
+ .nav-tabs li a {
+     color: #777;
+ }
+ #map {
+     width: 100%;
+     height: 400px;
+
+ }
+ .navbar {
+     font-family: Montserrat, sans-serif;
+     margin-bottom: 0;
+     background-color: #3AB795;
+     border: 0;
+     font-size: 11px !important;
+     letter-spacing: 4px;
+     opacity: 0.9;
+ }
+ .navbar li a, .navbar .navbar-brand {
+     color: #d5d5d5 !important;
+ }
+ .navbar-nav li a:hover {
+     color: #fff !important;
+ }
+ .navbar-nav li.active a {
+     color: #fff !important;
+     background-color: #29292c !important;
+ }
+ .navbar-default .navbar-toggle {
+     border-color: transparent;
+ }
+ .open .dropdown-toggle {
+     color: white;
+     background-color: #A0E8AF !important;
+ }
+ .dropdown-menu li a {
+     color: #000 !important;
+ }
+ .dropdown-menu li a:hover {
+     background-color: #A0E8AF !important;
+ }
+ footer {
+     background-color: #3AB795;
+     color: #f5f5f5;
+     padding: 32px;
+ }
+ footer a {
+     color: #f5f5f5;
+ }
+ footer a:hover {
+     color: #777;
+     text-decoration: none;
+ }
+ .form-control {
+     border-radius: 0;
+ }
+ textarea {
+     resize: none;
+ }
+
+ input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button .cancelbtn ,.signupbtn  {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,.signupbtn {
+    float: left;
+    width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 70px;
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+        width: 100%;
+    }
+}
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+.signup_btn {
+    width: 140px;
+    background-color: #baabaf;
+    border-style: none;
+    height: 50px;
+    border-radius: 3px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .signup_btn {
+       width: 100%;
+    }
+}
+
+
+
+
+.search-btn {
+  height: 35px;
+}
+
+.tour-banner {
+  height: 300px;
+  width: 100%;
+  background-image: url('/Assets/Home/images/tour-banner.jpg');
+  background-size: 100% 300px;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-tour-banner h3 {
+  color: white;
+}
+
+
+.content {
+  display: block;
+  margin-top: 50px;
+
+}
+
+.tour-image img {
+  width: 100%;
+  height: 100%;
+}
+.tour-name {
+  display: block;
+  background-color:  #86BAA1;
+  color: white;
+  padding-left: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.95;
+}
+
+
+
+.tour-image {
+    width: 90%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.tour-image img {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+}
+
+.tour-image:hover img {
+    -webkit-transform:scale(1.25); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25); /* Opera */
+     transform:scale(1.25);
+}
+
+.tour {margin-top: 20px;}
+.login-btn {
+  width: 110px;
+  height: 40px;
+  border-style: none;
+  background-color: #444b56;
+  color: white;
+  border-radius: 3px;
+}
+.login-btn:hover {
+  background-color: #7c889b;
+  color: black;
+}
+
+.cancel-btn {
+    width: 140px;
+    height: 50px;
+    background-color: #ff1f21;
+    border-style: none;
+    border-radius: 3px;
+}
+.signup-btn {
+  width: 140px;
+  background-color:  #00e64d;
+  border-style: none;
+  height: 50px;
+  border-radius: 3px;
+}
+
+.tour-description {
+  margin-top: 30px;
+}
+.tour-share {
+  float: right;
+}
+.tour-detail-image {
+  width: 100%;
+  margin-top: 60px;
+  display: block;
+  text-align: center;
+
+}
+.tour-detail-image img {
+  width: 100%;
+}
+
+.tour-price {
+  margin-top: 10px;
+  font-size: 30px;
+}
+.tour-price p span:nth-child(2) {
+  color:red;
+}
+
+.tour-date td{
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  padding-left: 5px;
+}
+.tour-date table tr td:first-child {
+  width: 30%;
+  text-align: left;
+}
+
+.tour-date table tr td:nth-child(2) {
+  width: 70%;
+  text-align: left;
+  padding: 10px;
+}
+.tour-date table tr:nth-child(n+2) td:nth-child(2) {
+  font-weight: bold;
+}
+
+.input-date input {
+  width: 300px !important;
+  height: 40px;
+  border-radius: 3px;
+}
+.input-date div {
+  font-weight: bold;
+}
+
+.number-ticket  {
+  width: 300px;
+}
+.number-ticket input {
+  width: 100%;
+  text-align: center;
+}
+.number-ticket div {
+  font-weight: bold;
+}
+.book-btn {
+  margin-top: 10px;
+}
+.book-btn button {
+  border-style: none;
+  background-color: rgb(0, 202, 255);
+  width: 100px;
+  height: 45px;
+  border-radius: 3px;
+  color: white;
+
+}
+
+.book-btn button:hover {
+  border-radius: 15px;
+}
+.tour-form {
+  /* margin-top: 30px; */
+}
+.tour-info {
+  margin-top: 20px;
+
+}
+.info-header {
+  border-style: solid;
+  border-width: 1px;
+  padding: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+
+}
+.info-header i {
+  float: right;
+  padding-top: 6px;
+}
+.info-content {
+  border-style: solid;
+  border-width: 1px;
+  border-top-style: none;
+  padding: 8px;
+  display: none;
+}
+.tour-component {
+  margin-top: 8px;
+}
+
+.tour-info p {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.item-icon {
+  display: inline-block;
+  width: 19%;
+  background-color: #BAB7A3;
+  text-align: center;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  float:left;
+  line-height: 35px;
+
+}
+
+.item-head {
+  display: inline-block;
+  float: left;
+  width: 80%;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1px;
+  padding-left: 15px;
+  border-color: #ccc;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.info-item {
+  margin-top: 20px;
+  position: relative;
+  display: block;
+  height: 25px;
+  line-height: 31px;
+}
+ .info-title{
+   font-weight: bold;
+   font-size: 30px;
+   margin-top: 30px;
+
+ }
+
+.home-ticket {
+    margin-bottom: 30px;
+}

@@ -37,7 +37,12 @@ namespace Core.Model
         public string Password { get; set; }
 
 
+        // them voa 
+        public int TinhTrang { get; set; }
+
 
         public virtual ICollection<Tour> Tours { get; set; }
+        public virtual ICollection<ChiTietKhachHangTour> ChiTietKhachHangDatTour { get; set; }
+        public virtual ICollection<HopDongDangKyTour> HopDongDangKyTour { get; set; }
     }
 }

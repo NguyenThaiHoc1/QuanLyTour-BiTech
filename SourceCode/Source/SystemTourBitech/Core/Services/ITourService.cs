@@ -13,7 +13,7 @@ namespace Core.Services
 
         bool AddPhuongTien(string maTour, List<PhuongTien> listpt);
 
-        bool UpdateThongTinTour(Tour tourupdate);
+        bool UpdateThongTinTour(Tour tourupdate, string arraystring);
 
         bool AddDichVuTour(string maTour, List<DichVu> listdv);
 

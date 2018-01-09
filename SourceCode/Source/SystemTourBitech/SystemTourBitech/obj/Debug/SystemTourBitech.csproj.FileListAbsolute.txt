@@ -5,9 +5,12 @@
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/EntityFramework.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/EntityFramework.SqlServer.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Microsoft.Web.Infrastructure.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Newtonsoft.Json.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Ninject.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Ninject.Web.Common.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Ninject.Web.Mvc.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/PagedList.dll
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/PagedList.Mvc.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Services.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/SimpleCrypto.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/System.Web.Helpers.dll
@@ -35,8 +38,12 @@
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Ninject.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Ninject.Web.Common.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Ninject.Web.Mvc.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/PagedList.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/PagedList.Mvc.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/Newtonsoft.Json.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/MySql.Data.Entity.EF6.xml
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/bin/MySql.Data.xml
+/Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/obj/Debug/SystemTourBitech.csprojResolveAssemblyReference.cache
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/obj/Debug/SystemTourBitech.csproj.CoreCompileInputs.cache
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/obj/Debug/SystemTourBitech.dll
 /Users/thaihoc/Desktop/BitechProject/SystemTourBitech/SystemTourBitech/obj/Debug/SystemTourBitech.pdb

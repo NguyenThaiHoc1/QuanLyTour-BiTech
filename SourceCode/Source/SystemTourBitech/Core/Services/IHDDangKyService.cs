@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.Model;
 
 namespace Core.Services
@@ -13,6 +14,16 @@ namespace Core.Services
 
         bool HuyHDDK(string maHopDong);
 
+        bool CapNhatChiTietKhachHangTour(int idKhachHang, int idTour);
+
+        List<HopDongDangKyTour> getAllHDDKTour();
+
+        List<HopDongDangKyTour> getAllbyTenKH(string tenKH);
+
+        List<HopDongDangKyTour> getAllbymaHopDong(string maHopDong);
+
+        List<HopDongDangKyTour> getAllbymaTour(string maTour);
         // con nua co he phat trien them nhieu phuong thuc khac nhau
+
     }
 }

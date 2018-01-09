@@ -76,6 +76,13 @@ namespace SystemTourBitech.App_Start
 
             kernel.Bind<ITourService>().To<TourServices>();
 
+            kernel.Bind<IHDDangKyService>().To<HDDangKyService>();
+
+            kernel.Bind<IHoaDonService>().To<HoaDonService>();
+
+            kernel.Bind<IFactThongKeService>().To<FactThongKeService>();
+
+            kernel.Bind<IChiTietKhachHangTourService>().To<ChiTietKhachHangTourService>();
         }        
     }
 }

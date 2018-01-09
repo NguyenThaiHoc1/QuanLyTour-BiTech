@@ -11,6 +11,7 @@ namespace SystemTourBitech
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
         }
     }
 }

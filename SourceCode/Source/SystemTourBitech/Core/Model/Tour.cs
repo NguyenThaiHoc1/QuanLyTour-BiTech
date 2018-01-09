@@ -40,5 +40,8 @@ namespace Core.Model
         public virtual ICollection<PhuongTien> PhuongTiens { get; set; } // many - many
         public virtual ICollection<DanhGiaTour> DanhGiaTours { get; set; }
         public virtual ICollection<KhachHang> KhachHangs { get; set; }
+
+        public virtual ICollection<ChiTietKhachHangTour> ChiTietTourDatKhachHang { get; set; }
+        public virtual ICollection<HopDongDangKyTour> HopDongDangKyTour { get; set; }
     }
 }

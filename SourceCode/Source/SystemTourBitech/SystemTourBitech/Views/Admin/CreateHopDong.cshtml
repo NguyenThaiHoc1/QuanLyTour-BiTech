@@ -1,0 +1,219 @@
+﻿@model SystemTourBitech.Models.HopDongDangKyTourView
+
+@{
+    ViewBag.Title = "CreateHopDong";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+
+@if(@TempData["Success"] != null)
+{   
+    <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success !</h4>
+                @TempData["Success"]
+    </div>
+
+} 
+else if (@TempData["Fails"] != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Error ! Please Try Again</h4>
+                @TempData["Fails"]
+    </div>
+}
+
+<section class="content-header">
+  <h1>
+    Manage Contract
+    <small>Control Contract System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li><a href="#"><i class="fa fa-dashboard"></i>Consumer</a></li>
+    <li class="active">Create Contract</li>
+  </ol>
+</section>
+
+
+<section class="invoice">
+  <!-- title row -->
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa-globe"></i> ADMINBITECH, Inc.
+        <small class="pull-right">Date: 2/10/2014</small>
+      </h2>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- info row -->
+
+
+   <div class="row invoice-info">
+        <div class="col-xs-12 col-sm-12 col-md-6" >
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Consumer: @Model.khachang_info.TenKH</h3>
+            </div>
+             <div class="panel-body">
+               <div class="row">
+                
+               
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                                  <tr>
+                                    <td>Họ và tên:</td>
+                                    <td>@Model.khachang_info.TenKH</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Địa Chỉ</td>
+                                    <td>@Model.khachang_info.DiaChi</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Status</td>
+                                    <td> 
+                                        @if(@Model.khachang_info.TinhTrang == 1)
+                                        {
+                                            <p style="color: #00a65a">Active</p>                                            
+                                        }
+                                        else 
+                                        {
+                                            <p style="color: red">Block</p> 
+                                        }
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Gender</td>
+                                    <td>@Model.khachang_info.GioiTinh</td>
+                                  </tr>
+                                    <tr>
+                                    <td>Username</td>
+                                    <td>@Model.khachang_info.Username</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Email</td>
+                                    <td><a href="mailto:info@support.com">@Model.khachang_info.Email</a></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Phone Number</td>
+                                    <td>@Model.khachang_info.SDT<br>
+                                    </td>
+                                  </tr>
+                                 
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+             </div>
+          </div>
+        </div>
+
+
+		<div class="col-xs-12 col-sm-12 col-md-6" >
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Tour: Sheena Shrestha</h3>
+            </div>
+             <div class="panel-body">
+               <div class="row">
+                
+               
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Mã Tour:</td>
+                        <td>@Model.tour_info.maTour</td>
+                      </tr>
+                      <tr>
+                        <td>Title Tour:</td>
+                        <td>@Model.tour_info.titleTour</td>
+                      </tr>
+                      <tr>
+                        <td>Giá</td>
+                        <td>@Model.tour_info.GiaDatNgay</td>
+                      </tr>
+                   
+                      <tr>
+                         <td>Status</td>
+                                    <td> 
+                                        @if(@Model.tour_info.Status == 1)
+                                        {
+                                            <p style="color: #00a65a">Active</p>                                            
+                                        }
+                                        else 
+                                        {
+                                            <p style="color: red">Block</p> 
+                                        }
+                         </td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+             </div>
+          </div>
+        </div>
+		
+    </div>
+	
+   
+   <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa-quora"></i> Info Contract
+        <small class="pull-right">Date: 2/10/2014</small>
+      </h2>
+    </div>
+    <!-- /.col -->
+  </div>
+
+
+  <form role="form" action="/Admin/CreateHopDongTour" method="post">
+  <div class="box-body">
+    <div class="col-md-6"> 
+
+        <input type="text" class="form-control" id="maTourxs" name="maTourxs" style="display: none" value=@Model.tour_info.idTour>
+		<input type="text" class="form-control" id="maKhachHang" name="maKhachHang" style="display: none" value=@Model.khachang_info.idKhachHang>
+		<input type="text" class="form-control" id="maTourKH" name="maTourKH" style="display: none" value=@Model.tour_info.maTour>
+
+        <div class="form-group">
+          <label for="maHD">Mã Hợp Đồng</label>
+          <input type="text" class="form-control" id="maHD" name="maHD" placeholder="Mã Hợp Đồng">
+        </div>
+            
+        <div class="form-group">
+          <label for="soLuong">Số Lượng</label>
+          <input type="text" class="form-control" id="soLuong" name="soLuong" placeholder="Số Lượng">
+        </div>
+      
+            
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+          <label for="tongchiphi">Tổng Chi Phí</label>
+          <input type="text" class="form-control" id="tongchiphi" name="tongchiphi" placeholder="Tổng Chi Phí">
+        </div>
+
+        <div class="form-group">
+          <label for="datcoc">Đặt Cọc (30% giá trị)</label>
+          <input type="text" class="form-control" id="datcoc" name="datcoc" placeholder="Tiền Đặt Cọc">
+        </div>
+       
+    </div>
+ </div>
+   
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+
+	
+</section>
+
+
+
+

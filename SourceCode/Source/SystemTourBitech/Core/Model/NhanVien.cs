@@ -29,5 +29,8 @@ namespace Core.Model
 
         public virtual LoaiNhanVien LoaiNhanVien { get; set; }
 
+        public virtual ICollection<HopDongDangKyTour> HopDongDangKyTour { get; set; }
+
+
     }
 }

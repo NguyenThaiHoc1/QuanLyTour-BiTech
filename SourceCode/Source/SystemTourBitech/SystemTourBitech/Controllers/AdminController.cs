@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Core.Model;
 using Core.Services;
+using PagedList;
 
 using SystemTourBitech.Models;
 using SystemTourBitech.Content;
+using Newtonsoft.Json;
 
 namespace SystemTourBitech.Controllers
 {
@@ -23,12 +25,24 @@ namespace SystemTourBitech.Controllers
 
         private readonly ITourService tourservice;
 
-        public AdminController(INhanVienService _nhanvien, ILoaiNhanVien _loainhanvien, ITourPhuongTien _tourphuongtien, ITourService _tourservice)
+        private readonly IKhachHangServices KhachhangServices;
+
+        private readonly IHDDangKyService HDDangKyServices;
+
+        private readonly IHoaDonService HoaDonServices;
+
+        private readonly IChiTietKhachHangTourService CTKHTS;
+
+        public AdminController(INhanVienService _nhanvien, ILoaiNhanVien _loainhanvien, ITourPhuongTien _tourphuongtien, ITourService _tourservice, IKhachHangServices _khachhang, IHDDangKyService _hopdong, IHoaDonService _hoadon, IChiTietKhachHangTourService _tourservices)
         {
             this.nhanvien = _nhanvien;
             this.loainhanvien = _loainhanvien;
             this.tourphuongtien = _tourphuongtien;
             this.tourservice = _tourservice;
+            this.KhachhangServices = _khachhang;
+            this.HDDangKyServices = _hopdong;
+            this.HoaDonServices = _hoadon;
+            this.CTKHTS = _tourservices;
         }
 
         public ActionResult Login()
@@ -83,21 +97,6 @@ namespace SystemTourBitech.Controllers
                 TempData["Fails"] = "Username or Password is wrong!";            
             }
             return RedirectToAction("Login");
-        }
-
-
-
-        public ActionResult DashBoard()
-        {
-
-            if(Session["UserID"] == null)
-            {
-                return RedirectToAction("Login"); 
-            }
-            else 
-            {
-                return View();
-            }
         }
 
 
@@ -396,7 +395,6 @@ namespace SystemTourBitech.Controllers
 
 
         // 
-
         public ActionResult PerfromTour()
         {
 
@@ -441,7 +439,16 @@ namespace SystemTourBitech.Controllers
             else
             {
                 Tour getinfor_tourid = tourservice.getinfoTour(idTour);
-                return View(getinfor_tourid);
+                List<PhuongTien> listphuongtien = tourphuongtien.getAllPhuongTien();
+                // dich vu 
+
+                UpdateTourView updateTourView = new UpdateTourView
+                {
+                    getinfor = getinfor_tourid,
+                    phuongtiendichuyen = listphuongtien,
+                    dichvuphucvu = new List<DichVu>()
+                };
+                return View(updateTourView);
             }          
         }
 
@@ -499,6 +506,52 @@ namespace SystemTourBitech.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
+        public ActionResult UpdateTour(FormCollection formCollection)
+        {
+            try
+            {
+                Tour newtour = new Tour();
+                List<string> listpathimage = processImageFile(Request.Files);
+                newtour.hinhanh1 = listpathimage[0];
+                newtour.hinhanh2 = listpathimage[1];
+                newtour.hinhanh3 = listpathimage[2];
+                string listselectVehicle = Request["selectVehicle"];
+                newtour.maTour = Request["maCodeTour"];
+                newtour.titleTour = Request["titletour"];
+                newtour.StartDate = DateTime.Parse(Request["startDate"]);
+                newtour.EndDate = DateTime.Parse(Request["dateEnd"]);
+                newtour.GiaDatNgay = decimal.Parse(Request["pricemoney"]);
+                newtour.TenNhaCungCap = Request["nhacungcap"];
+                newtour.DiaChi = Request["address"];
+                newtour.phonenumber = Request["phoneNumber"];
+                newtour.DiaDiemDen = Request["startend"];
+                newtour.DiaDiemKhoiHanh = Request["startpostion"];
+                newtour.Status = int.Parse(Request["SelectRole"]);
+                newtour.NgayThayDoi = DateTime.Now;
+                newtour.thongtinchinhsach = Request["editor3"];
+                newtour.thongtingia = Request["editor1"];
+                newtour.thongtinlichtrinh = Request["editor2"];
+                newtour.LoaiTourID = 1;
+                bool checkingInsertPhuongTienTour = tourservice.UpdateThongTinTour(newtour, listselectVehicle);
+                if (checkingInsertPhuongTienTour == true)
+                {
+                    TempData["Success"] = newtour.maTour + " Add Tour is Success";
+                }
+                else
+                {
+                    TempData["Fails"] = newtour.maTour + " Add Tour is Fail";
+                }
+            }
+            catch
+            {
+                TempData["Fails"] = "Please check your information !!";
+            }
+
+            return RedirectToAction("PerfromTour");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UploadTour(FormCollection formCollection)
         {
 
@@ -543,8 +596,381 @@ namespace SystemTourBitech.Controllers
                 TempData["Fails"] = "Please check your information !!";
             }
 
-            return RedirectToAction("mangaTour");
+            return RedirectToAction("PerfromTour");
          
+        }
+
+        // Mangage KhachHang
+
+     
+
+        public ViewResult ManageCustomer(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name" : "";
+            ViewBag.DateSortParm = sortOrder == "email" ? "username" : "Date";
+
+            var khachhangfilter = new List<KhachHang>();
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            switch (sortOrder)
+            {
+                case "name":
+                    khachhangfilter = KhachhangServices.getAllByName(searchString);
+                    break;
+                case "email":
+                    khachhangfilter = KhachhangServices.getAllByEmail(searchString);
+                    break;
+                case "username":
+                    khachhangfilter = KhachhangServices.getAllUsername(searchString);
+                    break;
+                default:
+                    khachhangfilter = KhachhangServices.getAllKhachHang();
+                    break;
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(khachhangfilter.ToPagedList(pageNumber, pageSize));
+
+        }
+
+
+        public ActionResult ProfileConSumer(int id)
+        {
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            KhachHang khachhang_info = KhachhangServices.getCusumer(id);
+            return View(khachhang_info);
+        }
+
+        [HttpPost]
+        public ActionResult ManageCustomerBlock(int id)
+        {
+            try
+            {
+                bool checking = KhachhangServices.BlockingCustomer(id);
+                if (checking)
+                {
+                    TempData["Success"] = "Block Customer Is Success !";
+                }
+                else 
+                {
+                    TempData["Fails"] = "Block Customer Is Fails !";
+                }
+            }
+            catch
+            {
+                TempData["Fails"] = "Process block is fail ! Check in Server";
+            }
+
+            return Json(Url.Action("ManageCustomer", "Admin"));
+        }
+
+
+        [HttpPost]
+        public ActionResult ManageCustomerUnBlock(int id)
+        { 
+            try
+            {
+                bool checking = KhachhangServices.UnBlockingCustomer(id);
+                if (checking)
+                {
+                    TempData["Success"] = "Active Customer Is Success !";
+                }
+                else
+                {
+                    TempData["Fails"] = "Active Customer Is Fails !";
+                }
+            }
+            catch
+            {
+                TempData["Fails"] = "Process Active is fail ! Check in Server";
+            }
+
+            return Json(Url.Action("ManageCustomer", "Admin"));
+        }
+
+        // Get PDF : nho sua lai thanh string 
+        public ActionResult CreateHopDongDangKyTour(string maHopDong)
+        {
+
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            HopDongDangKyTour hopdong = HDDangKyServices.TimKiemHDDK(maHopDong);
+
+            return View(hopdong);
+        }
+
+        // PDF : Hoa Don
+        public ActionResult CreateHoaDonPDF(string maHoaDon)
+        {
+
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            HoaDon hoadon = HoaDonServices.FindHoaDonByMaHoaDoa(maHoaDon).ToList()[0];
+
+            return View(hoadon);
+        }
+
+        // Creat Hop Dong
+        public ActionResult CreateHopDong(int idConsumer, string idTour)
+        {
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            // lat nen kiem tra lai cai nay 1 chut
+            HopDongDangKyTourView hopdong_infoview = new HopDongDangKyTourView
+            {
+                khachang_info = KhachhangServices.getCusumer(idConsumer),
+                tour_info = tourservice.getinfoTour(idTour)
+            };
+            return View(hopdong_infoview);
+        }
+
+        [HttpPost]
+        public ActionResult CreateHopDongTour()
+        {
+            // lay cac thong so can thiet        
+            try
+            {
+                HopDongDangKyTour new_hopdong = new HopDongDangKyTour();
+                new_hopdong.MaHopDong = Request["maHD"];
+                new_hopdong.DatCoc = decimal.Parse(Request["datcoc"].ToString());
+                new_hopdong.TongChiPhi = decimal.Parse(Request["tongchiphi"].ToString());
+                new_hopdong.SoLuong = int.Parse(Request["soLuong"].ToString());
+                new_hopdong.KhachHangID = int.Parse(Request["maKhachHang"]);
+                new_hopdong.NhanVienID = int.Parse(Session["UserID"].ToString());
+                new_hopdong.TourID = int.Parse(Request["maTourxs"]);
+                new_hopdong.NgayTao = DateTime.Now;
+                new_hopdong.NgayThayDoi = DateTime.Now;
+                string x = Request["maTourKH"].ToString();
+                bool checking = HDDangKyServices.TaoHDDK(new_hopdong); // tao xong 
+                // tiep tuc cap nhat ** chua test khuc nay **
+                bool checkingTourChiTiet = HDDangKyServices.CapNhatChiTietKhachHangTour(int.Parse(Request["maKhachHang"]), int.Parse(Request["maTourxs"]));
+                if(checking == true & checkingTourChiTiet == true)
+                {
+                    TempData["Success"] = "Hợp Đồng Đăng Ký Is Success !";
+                }
+                else 
+                {
+                    TempData["Fails"] = "Hợp Đồng Đăng Ký Is Fails !";
+                }
+            }
+            catch
+            {
+                TempData["Fails"] = "Hợp Đồng Đăng Ký is fail ! Check in Server";
+            }
+
+            return RedirectToAction("CreateHopDong", new { idConsumer = int.Parse(Request["maKhachHang"]), idTour = Request["maTourKH"].ToString() });
+        }
+
+
+        // Hop Dong
+        //public ActionResult ManageHopDongKhachHang()
+        //{
+            
+
+
+        //    List<HopDongDangKyTour> HDDKTour = HDDangKyServices.getAllHDDKTour();
+
+        //    return View(HDDKTour);
+        //}
+
+
+        public ViewResult ManageHopDongKhachHang(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "maHD" : "";
+            ViewBag.DateSortParm = sortOrder == "tenKH" ? "maTOUR" : "Date";
+
+            var HopDongKhachHangs = new List<HopDongDangKyTour>();
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            switch (sortOrder)
+            {
+                case "maHD":
+                    HopDongKhachHangs = HDDangKyServices.getAllbymaHopDong(searchString);
+                    break;
+                case "tenKH":
+                    HopDongKhachHangs = HDDangKyServices.getAllbyTenKH(searchString);
+                    break;
+                case "maTOUR":
+                    HopDongKhachHangs = HDDangKyServices.getAllbymaTour(searchString);
+                    break;
+                default:
+                    HopDongKhachHangs = HDDangKyServices.getAllHDDKTour();
+                    break;
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+            return View(HopDongKhachHangs.ToPagedList(pageNumber, pageSize));
+        }
+
+
+
+        public ViewResult ManageBill(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            Session["UserID"] = "1";
+            Session["Username"] = "Thai Hoc";
+            Session["Role"] = "1";
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "maHD" : "";
+            ViewBag.DateSortParm = sortOrder == "tenKH" ? "maTOUR" : "Date";
+
+            var HoaDonKhachHangs = new List<HoaDon>();
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            switch (sortOrder)
+            {
+                case "maHD":
+                    HoaDonKhachHangs = HoaDonServices.FindHoaDonByMaHoaDoa(searchString);
+                    break;
+                case "tenKH":
+                    HoaDonKhachHangs = HoaDonServices.FindHoaDonByTenKhachHang(searchString);
+                    break;
+                case "maTOUR":
+                    HoaDonKhachHangs = HoaDonServices.FindHoaDonByMaTour(searchString);
+                    break;
+                default:
+                    HoaDonKhachHangs = HoaDonServices.GetAllHoaDon();
+                    break;
+            }
+
+            int pageSize = 30;
+            int pageNumber = (page ?? 1);
+            return View(HoaDonKhachHangs.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        // Cho nay nhe <SearchHoaDonPage>
+       
+
+
+
+        [HttpGet]
+        public JsonResult searchBillByMaHopDong(string maHopDong) // ma hop dong 
+        {
+            
+            List<HoaDon> listhoadonhopdong = HoaDonServices.FindHoaDonByMaHopDong(maHopDong);
+            return Json(JsonConvert.SerializeObject(listhoadonhopdong), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AddBillByMaHopDong() // ma hop dong 
+        {
+
+            try
+            {
+                // phai lay ra hop dong 
+
+                List<HopDongDangKyTour> hopdong = HDDangKyServices.getAllbymaHopDong(Request["mahopdong"].ToString());
+
+                if(hopdong.Count() <= 0)
+                {
+                    TempData["Fails"] = "Mã Hợp Đồng IS Incorrect !!";
+                }
+
+                HoaDon new_hoadon = new HoaDon();
+                new_hoadon.maHoaDon = Request["mahoadon"];
+                new_hoadon.NgayTao = DateTime.Now;
+                new_hoadon.NgayThayDoi = DateTime.Now;
+                new_hoadon.SoTienThanhToan = decimal.Parse(Request["slot"]);
+                new_hoadon.HinhThucThanhToan = int.Parse(Request["SelectRole1"].ToString());
+                new_hoadon.Status = 1;
+                new_hoadon.HopDongDangKyTourID = hopdong[0].idMaHopDong;
+                bool checking = HoaDonServices.TaoHD(new_hoadon);
+
+                if (checking == true)
+                {
+                    TempData["Success"] = "Hóa Đơn Được Tạo Is Success !";
+                }
+                else
+                {
+                    TempData["Fails"] = "Tạo Hóa Đơn Is Fails !";
+                }
+
+            }
+            catch
+            {
+                TempData["Fails"] = "Hóa Đơn is not fail! checking your server";
+            }
+            return RedirectToAction("ManageBill");
+        }
+
+
+
+        // DashBoard
+
+        public ActionResult DashBoard()
+        {
+
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.CountHoaDon = HoaDonServices.GetAllHoaDon().Count();
+                ViewBag.CountUser = KhachhangServices.getAllKhachHang().Count();
+                ViewBag.CountTour = tourservice.getalllist().Count();
+                ViewBag.CountHopDong = HDDangKyServices.getAllHDDKTour().Count();
+                List<ChiTietKhachHangTour> todolist = CTKHTS.GetAllCTKHTNoAssign().ToList();
+                var Model = todolist;
+                if (todolist.Count() <= 10)
+                { ViewBag.ModelLength = todolist.Count(); }
+                else ViewBag.ModelLength = 10;
+                return View(Model);
+            }
         }
 
     }

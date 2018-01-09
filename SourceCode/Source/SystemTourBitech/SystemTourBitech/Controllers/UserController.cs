@@ -58,7 +58,7 @@ namespace SystemTourBitech.Controllers
 
                 ModelState.Clear();
             }
-            return View();
+            return RedirectToAction("Login");
         }
 
 
@@ -82,7 +82,7 @@ namespace SystemTourBitech.Controllers
             if (checking == true) {
                 Session["UserID"] = "1";
                 Session["Username"] = account.Username;
-                return RedirectToAction("LoggedIn");
+                return RedirectToAction("Index", "Home");
             }
             else {
                 ModelState.AddModelError("", "Username or Password is wrong!");

@@ -1,0 +1,136 @@
+﻿@model Core.Model.KhachHang 
+
+
+@{
+    ViewBag.Title = "ProfileConSumer";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+
+<section class="content-header">
+  <h1>
+    Manage Customer
+    <small>Control Consumer System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li class="active">Manage Customer</li>
+  </ol>
+</section>
+
+<section class="content">
+                <div class="box">
+                    <div class="box-header with-border">
+			             <p class=" text-info">Update : May 05,2014,03:00 pm </p>
+			        </div>
+		            <div class="box-body">
+			              <div class="panel panel-info">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">@Model.TenKH</h3>
+                            </div>
+                        <div class="panel-body">
+                          <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/Assets/Admin/dist/img/user2-160x160.jpg" class="img-circle img-responsive"> </div>
+                           
+                            <div class=" col-md-9 col-lg-9 "> 
+                              <table class="table table-user-information">
+                                <tbody>
+                                  <tr>
+                                    <td>Họ và tên:</td>
+                                    <td>@Model.TenKH</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Địa Chỉ</td>
+                                    <td>@Model.DiaChi</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Status</td>
+                                    <td> 
+                                        @if(@Model.TinhTrang == 1)
+										{
+                                            <p style="color: #00a65a">Active</p>                                            
+										}
+                                        else 
+										{
+											<p style="color: red">Block</p> 
+										}
+									</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Gender</td>
+                                    <td>@Model.GioiTinh</td>
+                                  </tr>
+                                    <tr>
+                                    <td>Username</td>
+                                    <td>@Model.Username</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Email</td>
+                                    <td><a href="mailto:info@support.com">@Model.Email</a></td>
+                                  </tr>
+								  <tr>
+                                    <td>Phone Number</td>
+                                    <td>@Model.SDT<br>
+                                    </td>
+                                  </tr>
+                                 
+                                </tbody>
+                              </table>
+                              
+                              <a href="#" class="btn btn-primary">My Sales Performance</a>
+                              <a href="#" class="btn btn-primary">Team Sales Performance</a>
+                            </div>
+                          </div>
+					</div>
+				</div>
+                    </div>
+                </div>
+
+
+	        <div class="box">
+                <div class="box-header">
+                        <h3 class="box-title">Các Tour Đã Đặt Hàng</h3>
+
+                  
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <table class="table table-striped custab">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Tên Tour</th>
+                                        <th>Ngày Đăt</th>
+                                        <th>Số Lượng</th>
+                                        <th class="text-center">Thanh Toán</th>
+                                    </tr>
+                                </thead>
+				                        @foreach(var x in Model.ChiTietKhachHangDatTour)
+				                        {
+                                            <tr>
+                                                <td>@x.Tour.maTour</td>
+                                                <td>@x.Tour.titleTour</td>
+                                                <td>@x.ngaydat</td>
+                                                <td>@x.amout</td>
+                                                <td class="text-center">
+						                               @if(@x.HopDongDangKyTourID == null)
+                                                        {
+                                                             <a class='btn btn-danger btn-xs' href=@(String.Format("/Admin/CreateHopDong?idConsumer={0}&idTour={1}", @x.KhachHangID , @x.Tour.maTour))><span class="glyphicon glyphicon-edit"></span> Create Hợp Đồng</a> 
+                                       
+						                                }
+						                                else 
+						                                {
+                                                              <a class='btn btn-success btn-xs' href="#">Mã Hợp Đồng: @x.HopDongDangKyTour.MaHopDong</a>
+						                                }
+                                                </td>
+                                            </tr>
+				                        }
+                                        
+
+                          </table>
+                    
+                </div>
+            </div>
+</section>
+
+

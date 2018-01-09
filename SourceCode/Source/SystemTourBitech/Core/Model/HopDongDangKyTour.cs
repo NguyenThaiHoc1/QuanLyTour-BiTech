@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Model
 {
@@ -19,7 +20,22 @@ namespace Core.Model
         public DateTime? NgayTao { get; set; }
         public DateTime? NgayThayDoi { get; set; }
 
-        public virtual KhachHang MaKhachHang { get; set; }
-        public virtual ICollection<Tour> MaTours { get; set; }
+        [ForeignKey("KhachHang")]
+        public int KhachHangID { get; set; }
+
+        public virtual KhachHang KhachHang { get; set; }
+
+        [ForeignKey("Tour")]
+        public int TourID { get; set; }
+
+        public virtual Tour Tour { get; set; }
+
+        [ForeignKey("NhanVien")]
+        public int NhanVienID { get; set; }
+
+        public virtual NhanVien NhanVien { get; set; }
+
+        public virtual ICollection<HoaDon> HoaDons { get; set; }
+
     }
 }

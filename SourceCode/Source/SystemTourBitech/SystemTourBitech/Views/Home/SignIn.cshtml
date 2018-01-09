@@ -1,0 +1,100 @@
+﻿
+@model Core.Model.KhachHang
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="">
+        <h4>UserAccount</h4>
+        <hr/>
+         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+        <div class="form-group">
+               <div class="col-md-2">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = ""})
+               </div>
+               <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new {@class = "form-control"} })
+                    @Html.ValidationMessageFor(model => model.Username, "", new {@class = "text-danger"})
+               </div>
+         </div>
+
+         <div class="form-group">
+               <div class="col-md-2">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = ""})
+               </div>
+               <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new {@class = "form-control"} })
+                    @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+               </div>
+         </div>
+        
+    
+        <input type="submit" class="btn btn-default" value="Login" />
+
+        
+    </div>
+ }
+
+
+<div class="content">
+  <form action="/action_page.php">
+    <div class="container">
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <div style ="margin-top:10px;">
+        <button type="submit" class= "login-btn">Login</button>
+        <input type="checkbox" checked="checked"> Remember me
+      </div>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" class="signup_btn">Sign up</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+  <div id="id01" class="modal">
+<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+<form class="modal-content animate" action="/action_page.php">
+  <div class="container">
+    <label><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <label><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <input type="checkbox" checked="checked"> Remember me
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+    <div class="clearfix">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancel-btn">Cancel</button>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </div>
+  </div>
+</form>
+</div>
+
+<script>
+var modal = document.getElementById('id01');
+$('.signup_btn').click(function(e){
+$('#id01').css('display','block');
+})
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+    modal.style.display = "none";
+}
+}
+</script>
+</div>

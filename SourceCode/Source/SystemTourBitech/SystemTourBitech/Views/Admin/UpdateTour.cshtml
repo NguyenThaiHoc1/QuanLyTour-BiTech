@@ -1,10 +1,11 @@
-﻿@model Core.Model.Tour
-
+﻿@model SystemTourBitech.Models.UpdateTourView
+ 
 @{
     ViewBag.Title = "UpdateTour";
     Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
 }
 
+<link rel='stylesheet prefetch' href="/Assets/Admin/fileupload.css">
 
 <section class="content-header">
   <h1>
@@ -20,153 +21,460 @@
 
 
 <section class="content">
-    <h2 class="page-header">Bootstrap Accordion & Carousel</h2>
 
-    <div class="row">
-    <div class="col-md-6">
-      <div class="box box-solid">
-        <div class="box-header with-border">
-          <h3 class="box-title">Collapsible Accordion</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="box-group" id="accordion">
-            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-            <div class="panel box box-primary">
-              <div class="box-header with-border">
-                <h4 class="box-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    Collapsible Group Item #1
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="box-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                  wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                  eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                  nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                  farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                  labore sustainable VHS.
-                </div>
-              </div>
-            </div>
-            <div class="panel box box-danger">
-              <div class="box-header with-border">
-                <h4 class="box-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    Collapsible Group Danger
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="box-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                  wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                  eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                  nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                  farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                  labore sustainable VHS.
-                </div>
-              </div>
-            </div>
-            <div class="panel box box-success">
-              <div class="box-header with-border">
-                <h4 class="box-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                    Collapsible Group Success
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseThree" class="panel-collapse collapse">
-                <div class="box-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                  wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                  eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                  nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                  farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                  labore sustainable VHS.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Preview information Tour</h3>
+                      <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding" style="margin: 20px 20px;">
 
-	   <div class="box box-success">
-                <div class="box-header">
-                  <i class="fa fa-comments-o"></i>
+                            <div class="row">
+                            <div class="col-md-6">
+                              <div class="box box-solid">
+                                <div class="box-header with-border">
+                                  <h3 class="box-title">Preview</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                  <div class="box-group" id="accordion">
+                                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                    <div class="panel box box-primary">
+                                      <div class="box-header with-border">
+                                        <h4 class="box-title">
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            Thông tin giá
+                                          </a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="box-body">
 
-                  <h3 class="box-title">Chat</h3>
+											@Html.Raw(@Model.getinfor.thongtingia)
+                                           
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="panel box box-danger">
+                                      <div class="box-header with-border">
+                                        <h4 class="box-title">
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                            Thông tin lịch trình
+                                          </a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="box-body">
+
+                                            @Html.Raw(Model.getinfor.thongtinlichtrinh)
+											
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="panel box box-success">
+                                      <div class="box-header with-border">
+                                        <h4 class="box-title">
+                                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                             Thông tin chính sách
+                                          </a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="box-body">
+
+                                            @Html.Raw(Model.getinfor.thongtinchinhsach)
+											
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+                              <!-- /.box -->
+
+                               <div class="box box-success">
+                                        <div class="box-header">
+                                          <i class="fa fa-comments-o"></i>
+
+                                          <h3 class="box-title">Vehicle</h3>
 
 
-                </div>
-                <div class="box-body chat" id="chat-box">
-                  <!-- chat item -->
-                  <div class="item">
-                    
+                                        </div>
+                                        <div class="box-body chat" id="chat-box">
+                                          <!-- chat item -->
+                                          <table class="table table-hover" id="dev-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tên Phương Tiện</th>
+                                                        <th>Slot</th>
+                                                        <th>Biển Số Xe</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+									                @foreach(var phuongtien in Model.getinfor.PhuongTiens)
+									                {
+									                <tr>
+                                                        <td>@phuongtien.maPhuongTien</td>
+                                                        <td>@phuongtien.tenPhuongTien</td>
+                                                        <td>@phuongtien.SoChoNgoi</td>
+                                                        <td>@phuongtien.BienSoXe</td>
+                                                    </tr>
+									                }
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.chat -->
+
+                                </div>
+                                <!-- /.box (chat box) -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                              <div class="box box-solid">
+                                <div class="box-header with-border">
+                                  <h3 class="box-title">Hình ảnh</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                                      <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                      <div class="item active">
+                                        <img src=@("/Images/Tour/" + Model.getinfor.hinhanh1) alt="First slide">
+
+                                        <div class="carousel-caption">
+                                          First Slide
+                                        </div>
+                                      </div>
+                                      <div class="item">
+                                        <img src=@("/Images/Tour/" + Model.getinfor.hinhanh2) alt="Second slide">
+
+                                        <div class="carousel-caption">
+                                          Second Slide
+                                        </div>
+                                      </div>
+                                      <div class="item">
+                                        <img src=@("/Images/Tour/" + Model.getinfor.hinhanh3) alt="Third slide">
+
+                                        <div class="carousel-caption">
+                                          Third Slide
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                      <span class="fa fa-angle-left"></span>
+                                    </a>
+                                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                      <span class="fa fa-angle-right"></span>
+                                    </a>
+                                  </div>
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+                              <!-- /.box -->
+                            </div>
+                            <!-- /.col -->
+					    
+					</div>
+				 </div>
+    </div>
+
+
+     <div class="box">
+            <div class="box box-primary">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Preview information Tour</h3>
+                      <div class="box-tools">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding" style="margin: 20px 20px;">
+						     <div class="row">
+        <div class="col-md-12">
+
+
+                <form role="form" id="" action="/Admin/UpdateTour" method="post" enctype = "multipart/form-data">
+                  <div class="box-body">
+                    <div class="col-md-6"> 
+
+                        <div class="form-group">
+                          <label for="maCodeTour">Mã Code Tour</label>
+                          <input type="text" class="form-control" id="maCodeTour" name="maCodeTour" placeholder="Code Tour" value=@(Model.getinfor.maTour)>
+                        </div>
+                            
+                        <div class="form-group">
+                          <label for="titletour">Title Tour</label>
+                          <input type="text" class="form-control" id="titletour" name="titletour" placeholder="Title Tour" value=@(Model.getinfor.titleTour)>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="startpostion">Địa điểm khởi hành</label>
+                          <input type="text" class="form-control" id="startpostion" name="startpostion" placeholder="Địa điểm khởi hành" value=@(Model.getinfor.DiaDiemKhoiHanh)>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="startend">Điểm đến</label>
+                          <input type="text" class="form-control" id="startend" name="startend" placeholder="Điểm đến" value=@(Model.getinfor.DiaDiemDen)>
+                        </div>
+
+                        <div class="form-group">
+                                <label>Phương tiện</label>
+                                <select class="form-control select2" multiple="multiple" data-placeholder="Chọn các phương tiện"
+                                        style="width: 100%;" name="selectVehicle">
+                                        @foreach(var phuongtien in Model.phuongtiendichuyen)
+										{
+										    <option value="@phuongtien.idPhuongTien" style="color:black;">@phuongtien.tenPhuongTien</option>
+										}
+
+                                </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Dịch vụ</label>
+                                <select class="form-control select3" multiple="multiple" data-placeholder="Chọn các dịch vụ"
+                                        style="width: 100%;" name="selectServies">
+                                        @foreach(var dichvu in Model.dichvuphucvu)
+                                        {
+                                            <option value="@dichvu.idDichVu" style="color:black;">@dichvu.MaDichVu</option>
+                                        }
+                                </select>
+                        </div>
+
+                        <div class="form-group">
+                                <label for="vehiclename">Ngày bắt đầu</label>
+                                <div class="input-group date">
+                                  <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                  </div>
+                                  <input type="text" class="form-control pull-right" id="datepicker" name="startDate" value=@(Model.getinfor.StartDate)>
+                                </div>
+                        </div>
+
+                        
+                            
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="nhacungcap">Tên nhà cung cấp</label>
+                          <input type="text" class="form-control" id="nhacungcap" name="nhacungcap" placeholder="Nhà cung cấp" value=@Html.Raw(@Model.getinfor.TenNhaCungCap)>
+											
+                        </div>
+
+                        <div class="form-group">
+                          <label for="address">Địa chỉ</label>
+                          <input type="text" class="form-control" id="address" name="address" placeholder="Address" value=@(Model.getinfor.DiaChi)>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="phoneNumber">Số điện thoại</label>
+                          <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;(999) 999-9999&quot;" data-mask="" name="phoneNumber" value=@(Model.getinfor.phonenumber)>
+                        </div>
+                            
+                        <div class="form-group">
+                          <label for="vehiclename">Giá đặt ngay</label>
+                          <input type="number" min="0.00" step="0.05"  id="exampleInputAmount" class="form-control" placeholder="Price" name="pricemoney" value=@(Model.getinfor.GiaDatNgay)>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control select2" style="width: 100%; height: 35px;" name="SelectRole">
+                                    <option value="1">ACTIVE</option>
+                                    <option value="2">NOT ACTIVE</option>
+                                    <option value="3">MAINTENACE</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="vehiclename">Ngày kết thúc</label>
+                          <div class="input-group date">
+                                  <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                  </div>
+                                  <input type="text" class="form-control pull-right" id="datepicker1" name="dateEnd" value=@(Model.getinfor.EndDate)>
+                           </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-md-12">
+                         <label for="vehiclename">Hình mô tả 1</label>
+                         <div class="input-group image-preview1">
+                                <input type="text" class="form-control image-preview-filename1" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                <span class="input-group-btn">
+                                    <!-- image-preview-clear button -->
+                                    <button type="button" class="btn btn-default image-preview-clear1" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                    </button>
+                                    <!-- image-preview-input -->
+                                    <div class="btn btn-default image-preview-input1">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title1">Browse</span>
+                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview2"/> <!-- rename it -->
+                                    </div>
+                                </span>
+                            </div><!-- /input-group image-preview [TO HERE]--> 
+
+                             <label for="vehiclename">Hình mô tả 2</label>
+                             <div class="input-group image-preview2">
+                                <input type="text" class="form-control image-preview-filename2" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                <span class="input-group-btn">
+                                    <!-- image-preview-clear button -->
+                                    <button type="button" class="btn btn-default image-preview-clear2" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                    </button>
+                                    <!-- image-preview-input -->
+                                    <div class="btn btn-default image-preview-input2">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title2">Browse</span>
+                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview1"/> <!-- rename it -->
+                                    </div>
+                                </span>
+                            </div><!-- /input-group image-preview [TO HERE]--> 
+                            <label for="vehiclename">Hình mô tả 3</label>
+                            <div class="input-group image-preview">
+                                
+                                <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                <span class="input-group-btn">
+                                    <!-- image-preview-clear button -->
+                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                    </button>
+                                    <!-- image-preview-input -->
+                                    <div class="btn btn-default image-preview-input">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title">Browse</span>
+                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+                                    </div>
+                                </span>
+                            </div><!-- /input-group image-preview [TO HERE]--> 
+                             
+                    </div>
+
                   </div>
-                </div>
-                <!-- /.chat -->
+                  <!-- /.box-body -->
 
+                  <section class="content">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="box box-info">
+                            <div class="box-header">
+                              <h3 class="box-title">Thông tin giá
+                                <small></small>
+                              </h3>
+                              <!-- tools box -->
+                              <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                  <i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                                        title="Remove">
+                                  <i class="fa fa-times"></i></button>
+                              </div>
+                              <!-- /. tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                                    <textarea id="editor1" name="editor1" rows="10" cols="80" >
+														@Model.getinfor.thongtingia
+                                    </textarea>
+                            </div>
+                          </div>
+                          <!-- /.box -->
+                        </div>
+                        <!-- /.col-->
+                      </div>
+                      <!-- ./row -->
+
+
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="box box-info">
+                            <div class="box-header">
+                              <h3 class="box-title">Lịch trình
+                                <small></small>
+                              </h3>
+                              <!-- tools box -->
+                              <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                  <i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                                        title="Remove">
+                                  <i class="fa fa-times"></i></button>
+                              </div>
+                              <!-- /. tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                                    <textarea id="editor2" name="editor2" rows="10" cols="80" >
+														@Model.getinfor.thongtinlichtrinh
+                                    </textarea>
+                            </div>
+                          </div>
+                          <!-- /.box -->
+                        </div>
+                        <!-- /.col-->
+                      </div>
+                      <!-- ./row -->
+                <!-- /.content -->
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="box box-info">
+                            <div class="box-header">
+                              <h3 class="box-title">Chính sách
+                                <small></small>
+                              </h3>
+                              <!-- tools box -->
+                              <div class="pull-right box-tools">
+                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                  <i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                                        title="Remove">
+                                  <i class="fa fa-times"></i></button>
+                              </div>
+                              <!-- /. tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body pad">
+                                    <textarea id="editor3" name="editor3" rows="10" cols="80" >
+														@Model.getinfor.thongtinchinhsach
+                                    </textarea>
+                            </div>
+                          </div>
+                          <!-- /.box -->
+                        </div>
+                        <!-- /.col-->
+                      </div>
+                      <!-- ./row -->
+                      <button type="submit" class="btn btn-primary">Add</button>
+
+                  </section>
+            </form>
         </div>
-        <!-- /.box (chat box) -->
-    </div>
-    <!-- /.col -->
-    <div class="col-md-6">
-      <div class="box box-solid">
-        <div class="box-header with-border">
-          <h3 class="box-title">Carousel</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-              <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="item active">
-                <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
-
-                <div class="carousel-caption">
-                  First Slide
-                </div>
-              </div>
-              <div class="item">
-                <img src="http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
-
-                <div class="carousel-caption">
-                  Second Slide
-                </div>
-              </div>
-              <div class="item">
-                <img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-
-                <div class="carousel-caption">
-                  Third Slide
-                </div>
-              </div>
-            </div>
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-              <span class="fa fa-angle-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-              <span class="fa fa-angle-right"></span>
-            </a>
-          </div>
-        </div>
-        <!-- /.box-body -->
       </div>
-      <!-- /.box -->
-    </div>
-    <!-- /.col -->
+                    </div>
+				</div>
+			</div>
+	 </div>
+
     </div>
 
 
@@ -174,3 +482,26 @@
 </section>
 
 <script src="/Assets/Admin/dist/js/pages/dashboard.js"></script>
+<script src="/Assets/Admin/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="/Assets/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="/Assets/Admin/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="/Assets/Admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="/Assets/Admin/jquery.validate.js"></script>
+<script src="/Assets/Admin/fileupload.js"></script>
+<script src="/Assets/Admin/bower_components/ckeditor/ckeditor.js"></script>
+<script>
+  $(function () {
+    $('[data-mask]').inputmask()
+    $('.select2').select2();
+    $('.select3').select2();
+    CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor2');
+    CKEDITOR.replace('editor3');
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+    $('#datepicker1').datepicker({
+      autoclose: true
+    });
+  })
+</script>

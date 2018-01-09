@@ -1,0 +1,29 @@
+﻿
+@model IEnumerable<Core.Model.HoaDon>  
+  
+<table cellpadding="1" cellspacing="1" border="1">  
+    <tr>  
+        <th>Mã Hóa Đơn</th>
+      <th>Số Tiền</th>
+      <th>Hình Thức</th>
+      <th>Ngày Thành Toán</th>
+    </tr>  
+    @foreach (var item in Model)  
+    {  
+        <tr>  
+            <td>@item.maHoaDon</td>  
+            <td>@item.SoTienThanhToan</td>  
+            <td>
+            @if (@item.Status == 1)
+            {
+                <a class='actionButton btn btn-success btn-xs' ><span class="glyphicon glyphicon-edit"></span> Tiền Mặt</a> 
+
+            }
+            else{
+                <a class='actionActive btn btn-warning btn-xs' ><span class="glyphicon glyphicon-edit"></span> Thẻ Tín Dụng</a> 
+            }
+		    </td>  
+            <td>@item.</td>
+        </tr>  
+    }  
+</table>  

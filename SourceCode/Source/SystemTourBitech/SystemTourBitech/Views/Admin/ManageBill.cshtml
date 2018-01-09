@@ -1,0 +1,166 @@
+﻿@model PagedList.IPagedList<Core.Model.HoaDon>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "ManageBill";
+    Layout = "~/Views/Shared/Admin/_LayoutAdminInside.cshtml";
+}
+
+
+@if(@TempData["Success"] != null)
+{   
+    <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success !</h4>
+                @TempData["Success"]
+    </div>
+
+} 
+else if (@TempData["Fails"] != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Error ! Please Try Again</h4>
+                @TempData["Fails"]
+    </div>
+}
+
+
+<section class="content-header">
+  <h1>
+    Manage Bill Consumer
+    <small>Control Bill System</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li class="active">Manage Bill</li>
+  </ol>
+</section>
+
+
+
+<section class="content">
+                <div class="box">
+                    <div class="box-header with-border">
+			                <div class="col-md-8">
+                            <form action="/Admin/ManageBill" method="get">
+                                <div class="input-group">
+                                    <div class="input-group-btn search-panel">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <select class="" name="sortOrder">
+                                                  <option data-tokens="ketchup mustard" value="fullthings">ALL</option>
+                                                  <option data-tokens="mustard" value="maHD">Mã Hóa Đơn</option>
+                                                  <option data-tokens="frosting" value="tenKH">Mã Khách Hàng</option>
+                                                  <option data-tokens="frosting" value="maTOUR">Mã Tour</option>
+                                                </select>
+                                        </button>
+
+
+                                        
+                                    </div>
+                                    <input type="hidden" name="search_param" value="all" id="search_param">         
+                                    <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Search term...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button>
+
+						            </span>
+                                </div>
+                				
+                            </form>
+			                </div>
+			                <div class="col-md-4">
+				                    <a href="/Admin/mangaTour" class="editbtn btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#orderModal"><b>+</b>Add new Bill</a>
+                            </div>
+                    </div>
+		            <div class="box-body">
+
+                            <table class="table table-striped custab">
+                                <thead>
+                                    <tr>
+                                        <th>Mã Hóa Đơn</th>
+                                        <th>Số Tiền</th>
+                                        <th>By</th>
+						                <th>For</th>
+						                <th>Create Date</th>
+						                <th>Status</th>
+                                        <th class="text-center">FE</th>
+                                    </tr>
+                                </thead>
+				                    @foreach(var hoadon in Model)
+                                    {
+				                       <tr>
+                                        <td>@hoadon.maHoaDon</td>
+                                        <td>@hoadon.SoTienThanhToan</td>
+                                        <td>NTH</td>
+                                        <td>@hoadon.HopDongDangKyTour.MaHopDong</td>
+                                        <td>@hoadon.NgayTao</td>
+				                        <td>
+
+                                             @if (@hoadon.HinhThucThanhToan == 1)
+                                            {
+                                                <a class='actionButton btn btn-success btn-xs' ><span class="glyphicon glyphicon-edit"></span> Tiền Mặt</a> 
+
+                                            }
+                                            else{
+                                                <a class='actionActive btn btn-warning btn-xs' ><span class="glyphicon glyphicon-edit"></span> Thẻ Tín Dụng</a> 
+                                            }
+
+				                        </td>
+                                        <td class="text-center">
+                                           <a class='btn btn-info btn-xs' href=@("/Admin/CreateHoaDonPDF?maHoaDon=" + @hoadon.maHoaDon)><i class="fa fa-download" aria-hidden="true"></i>Generate PDF</a>
+                                           <a class='btn btn-warning btn-xs' href="#"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        </td>
+					                  </tr>
+                                    }
+                                           
+
+                          </table>
+                         <br />
+                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                            @Html.PagedListPager(Model, page => Url.Action("ManageBill", 
+                                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    
+		            </div>
+               </div>
+
+
+           
+    
+</section>
+
+
+
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Bill</h4>
+        </div>
+        <div class="modal-body">
+                @RenderPage("./Pariticals/_FromBillKhachHang.cshtml")
+				<hr />
+			    @RenderPage("./Pariticals/_FromAddBill.cshtml")
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+<script>
+
+  $(function () {   
+    
+    $(".editbtn").click(function(){
+        $("#myModal").modal();
+    });
+
+  })
+</script>

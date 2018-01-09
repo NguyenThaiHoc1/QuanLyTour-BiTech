@@ -43,6 +43,7 @@ namespace Data
         public DbSet<TheThanhToan> TheThanhToan { get; set; }
         public DbSet<ThongBao> ThongBao { get; set; }
         public DbSet<Tour> Tour { get; set; }
+        public DbSet<ChiTietKhachHangTour> ChiTietKhachHangTour { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -66,12 +67,15 @@ namespace Data
                 cs.ToTable("TourPhuongTien");
             });
 
-            modelBuilder.Entity<Tour>().HasMany<KhachHang>(s => s.KhachHangs).WithMany(c => c.Tours).Map(cs =>
-            {
-                cs.MapLeftKey("TourRefId");
-                cs.MapRightKey("KhachHangRefId");
-                cs.ToTable("KhachHangChiTietTour");
-            });
+            //modelBuilder.Entity<Tour>().HasMany<KhachHang>(s => s.KhachHangs).WithMany(c => c.Tours).Map(cs =>
+            //{
+            //    cs.MapLeftKey("TourRefId");
+            //    cs.MapRightKey("KhachHangRefId");
+            //    cs.ToTable("KhachHangChiTietTour");
+            //});
+
+
+            modelBuilder.Entity<ChiTietKhachHangTour>().HasKey(bc => new { bc.KhachHangID, bc.TourID });
 
             base.OnModelCreating(modelBuilder);
 
